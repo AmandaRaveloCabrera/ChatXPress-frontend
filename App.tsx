@@ -6,6 +6,7 @@ import {
   createNativeStackNavigator,
 } from "@react-navigation/native-stack";
 import LoginScreen from "./screens/loginscreen/LoginScreen";
+import ChatMenuScreen from "./screens/chatmenuscreen/ChatMenuScreen";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -18,6 +19,7 @@ export default function App() {
         <Stack.Navigator initialRouteName="Home" screenOptions={stackOptions}>
           <Stack.Screen name="Home" component={WelcomeScreen} />
           <Stack.Screen name="Login" component={LoginScreen} />
+          <Stack.Screen name="Main Page" component={ChatMenuScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </View>

@@ -29,7 +29,7 @@ const ChatMenuScreen = () => {
         </View>
         <ScrollView style={styles.ScrollContainer}>
           {chats.map((chat, index) => (
-            <View style={styles.chatContainer}>
+            <View style={styles.chatContainer} key={index}>
               <View style={styles.chatSubContainer}>
                 <View style={styles.avatarContainer}>
                   <Image source={chat.avatar} style={styles.avatarStyle} />
