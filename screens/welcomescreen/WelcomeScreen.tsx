@@ -9,7 +9,7 @@ import {
 import React from "react";
 
 const WelcomeScreen = () => {
-  const background: ImageBackgroundProps = require("../assets/images/fondo.jpg");
+  const background: ImageBackgroundProps = require("../../assets/images/fondo.jpg");
   return (
     <ImageBackground
       source={background}
