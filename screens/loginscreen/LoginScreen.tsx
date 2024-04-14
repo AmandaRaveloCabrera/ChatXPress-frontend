@@ -7,9 +7,11 @@ import {
 } from "react-native";
 import React from "react";
 import LoginForm from "../../components/loginform/LoginForm";
+import { NavigationContext } from "@react-navigation/native";
 
 const LoginScreen = () => {
   const background: ImageBackgroundProps = require("../../assets/images/fondo.jpg");
+
   return (
     <ImageBackground
       source={background}

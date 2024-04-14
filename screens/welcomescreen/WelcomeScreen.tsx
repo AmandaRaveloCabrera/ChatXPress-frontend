@@ -7,9 +7,15 @@ import {
   Button,
 } from "react-native";
 import React from "react";
+import { NavigationContext } from "@react-navigation/native";
 
 const WelcomeScreen = () => {
   const background: ImageBackgroundProps = require("../../assets/images/fondo.jpg");
+  const navigation = React.useContext(NavigationContext);
+
+  const navigateToLogin = () => {
+    navigation?.navigate("Login");
+  };
   return (
     <ImageBackground
       source={background}
@@ -21,7 +27,7 @@ const WelcomeScreen = () => {
       </View>
       <View></View>
       <View>
-        <Button title="Tap to login"></Button>
+        <Button onPress={navigateToLogin} title="Tap to login"></Button>
       </View>
     </ImageBackground>
   );

@@ -1,7 +1,12 @@
 import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import React from "react";
+import { NavigationContext } from "@react-navigation/native";
 
 const LoginForm = () => {
+  const navigation = React.useContext(NavigationContext);
+  const returnWelcomeScreen = () => {
+    navigation?.navigate("Home");
+  };
   return (
     <View style={styles.formContainer}>
       <View style={styles.inputContainer}>
@@ -26,7 +31,7 @@ const LoginForm = () => {
         <Pressable style={styles.buttonStyle}>
           <Text style={styles.textStyle}>Send</Text>
         </Pressable>
-        <Pressable style={styles.buttonStyle}>
+        <Pressable style={styles.buttonStyle} onPress={returnWelcomeScreen}>
           <Text style={styles.textStyle}>Return</Text>
         </Pressable>
       </View>
