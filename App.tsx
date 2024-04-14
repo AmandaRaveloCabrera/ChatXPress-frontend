@@ -2,12 +2,14 @@
 import { StyleSheet, Text, View } from "react-native";
 import LoginScreen from "./screens/loginscreen/LoginScreen";
 import WelcomeScreen from "./screens/welcomescreen/WelcomeScreen";
+import ChatMenuScreen from "./screens/chatmenuscreen/ChatMenuScreen";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      {/* <WelcomeScreen /> */}
-      <LoginScreen />
+      <WelcomeScreen />
+      {/* <LoginScreen /> */}
+      {/* <ChatMenuScreen /> */}
     </View>
   );
 }
