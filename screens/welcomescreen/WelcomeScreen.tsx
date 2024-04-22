@@ -8,10 +8,11 @@ import {
   Pressable,
 } from "react-native";
 import React from "react";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { NavigationContext } from "@react-navigation/native";
 
 const WelcomeScreen = () => {
-  const background: ImageBackgroundProps = require("../../assets/images/fondo.jpg");
+  const background: ImageBackgroundProps = require("../../assets/images/fondoHome.jpg");
   const navigation = React.useContext(NavigationContext);
 
   const navigateToLogin = () => {
@@ -29,7 +30,7 @@ const WelcomeScreen = () => {
         </View>
         <View></View>
         <View>
-          <Button title="Tap to login"></Button>
+          <Text style={styles.textStyle}> Tap to login</Text>
         </View>
       </ImageBackground>
     </Pressable>
@@ -43,11 +44,20 @@ const styles = StyleSheet.create({
     height: "100%",
     width: "100%",
     alignItems: "center",
-    justifyContent: "space-around",
+    justifyContent: "space-between",
+    zIndex: 1,
   },
   titleStyle: {
     fontSize: 36,
     fontWeight: "bold",
     color: "white",
+    paddingTop: 110,
+  },
+
+  textStyle: {
+    color: "#fff",
+    fontSize: 30,
+    fontWeight: "bold",
+    paddingBottom: 40,
   },
 });
