@@ -5,6 +5,7 @@ import {
   ImageBackground,
   ImageBackgroundProps,
   Button,
+  Pressable,
 } from "react-native";
 import React from "react";
 import { NavigationContext } from "@react-navigation/native";
@@ -17,19 +18,21 @@ const WelcomeScreen = () => {
     navigation?.navigate("Login");
   };
   return (
-    <ImageBackground
-      source={background}
-      resizeMode="cover"
-      style={styles.backgroundContainer}
-    >
-      <View>
-        <Text style={styles.titleStyle}>CHAT XPRESS</Text>
-      </View>
-      <View></View>
-      <View>
-        <Button onPress={navigateToLogin} title="Tap to login"></Button>
-      </View>
-    </ImageBackground>
+    <Pressable onPress={navigateToLogin}>
+      <ImageBackground
+        source={background}
+        resizeMode="cover"
+        style={styles.backgroundContainer}
+      >
+        <View>
+          <Text style={styles.titleStyle}>CHAT XPRESS</Text>
+        </View>
+        <View></View>
+        <View>
+          <Button title="Tap to login"></Button>
+        </View>
+      </ImageBackground>
+    </Pressable>
   );
 };
 

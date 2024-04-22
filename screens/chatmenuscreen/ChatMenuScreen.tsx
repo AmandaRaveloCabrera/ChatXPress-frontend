@@ -1,16 +1,29 @@
-import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  ScrollView,
+  Pressable,
+} from "react-native";
+import { FontAwesome } from "@expo/vector-icons";
 import React from "react";
 import { chats } from "../../data/chats";
+import { NavigationContext } from "@react-navigation/native";
 
 const ChatMenuScreen = () => {
+  const navigation = React.useContext(NavigationContext);
+  const signOut = () => {
+    navigation?.navigate("Home");
+  };
+
   return (
     <View style={styles.mainContainer}>
       <View style={styles.headerContainer}>
         <Text style={styles.titleStyle}>Chats</Text>
-        <Image
-          source={require("../../assets/images/icono.png")}
-          style={styles.imagenStyle}
-        />
+        <Pressable onPress={signOut}>
+          <FontAwesome name="sign-out" size={36} color="white" />
+        </Pressable>
       </View>
       <View style={styles.chatsContainer}>
         <View style={styles.imageContainer}>
