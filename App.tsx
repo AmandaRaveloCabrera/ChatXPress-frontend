@@ -8,6 +8,13 @@ import {
 import LoginScreen from "./screens/loginscreen/LoginScreen";
 import ChatMenuScreen from "./screens/chatmenuscreen/ChatMenuScreen";
 
+/**
+ * This is the main component of the application,
+ * it has a browser to go to the pages created.
+ * The main page when starting the application is
+ * the Welcome screen.
+ */
+
 export default function App() {
   const Stack = createNativeStackNavigator();
   const stackOptions: NativeStackNavigationOptions = {

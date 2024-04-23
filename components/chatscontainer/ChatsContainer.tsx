@@ -2,6 +2,11 @@ import { ScrollView, StyleSheet, Text, View, Image } from "react-native";
 import React from "react";
 import { chats } from "../../data/chats";
 
+/**
+ * The ChatsContainer component is responsible for displaying chats
+ * in the chatmenu screen.
+ */
+
 const ChatsContainer = () => {
   return (
     <ScrollView style={styles.ScrollContainer}>

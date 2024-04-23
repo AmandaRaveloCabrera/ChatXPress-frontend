@@ -7,7 +7,16 @@ import {
 } from "react-native";
 import React from "react";
 import LoginForm from "../../components/loginform/LoginForm";
-import { NavigationContext } from "@react-navigation/native";
+
+/**
+ * This is the login screen.
+ * It will show, in addition to the background image,
+ * a form to enter the user.
+ * When pressing the send button, if the user is correct
+ * it will go to the next screen and if not an alert will appear
+ * indicating that the user is incorrect.
+ * The return button is to return to the welcome screen.
+ */
 
 const LoginScreen = () => {
   const background: ImageBackgroundProps = require("../../assets/images/fondo.jpg");

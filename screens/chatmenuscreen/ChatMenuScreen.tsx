@@ -1,16 +1,16 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  ScrollView,
-  Pressable,
-} from "react-native";
+import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import React from "react";
-import { chats } from "../../data/chats";
 import { NavigationContext } from "@react-navigation/native";
 import ChatsContainer from "../../components/chatscontainer/ChatsContainer";
+
+/**
+ * This is the chatmenu screen.
+ * In it, the user can see all the chats he has,
+ * the new chats he has not read.
+ * She / He can also create new chats and if the user logs out
+ * She / He will navigate to the welcome screen.
+ */
 
 const ChatMenuScreen = () => {
   const navigation = React.useContext(NavigationContext);

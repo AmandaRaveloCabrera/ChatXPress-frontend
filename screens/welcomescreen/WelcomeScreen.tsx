@@ -8,8 +8,15 @@ import {
   Pressable,
 } from "react-native";
 import React from "react";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { NavigationContext } from "@react-navigation/native";
+
+/**
+ * This is the welcome screen.
+ * It will show a background image indicating to the user
+ * that she/he has to press it to go to the login.
+ * You can press any part of the screen to go to
+ * the indicated screen.
+ */
 
 const WelcomeScreen = () => {
   const background: ImageBackgroundProps = require("../../assets/images/fondoHome.jpg");

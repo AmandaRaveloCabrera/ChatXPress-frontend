@@ -3,6 +3,11 @@ import React from "react";
 import { NavigationContext } from "@react-navigation/native";
 import { user } from "../../data/user";
 
+/**
+ * The loginForm component is responsible for displaying
+ * and validating the login form used in the login screen.
+ */
+
 const LoginForm = () => {
   const navigation = React.useContext(NavigationContext);
   const initialUserState = {

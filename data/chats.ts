@@ -1,3 +1,7 @@
+/**
+ * Some mocketed chats used to view them when logging in.
+ */
+
 export const chats = [
   {
     name: "Pepito",
