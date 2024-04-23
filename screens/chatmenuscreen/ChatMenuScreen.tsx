@@ -10,6 +10,7 @@ import { FontAwesome } from "@expo/vector-icons";
 import React from "react";
 import { chats } from "../../data/chats";
 import { NavigationContext } from "@react-navigation/native";
+import ChatsContainer from "../../components/chatscontainer/ChatsContainer";
 
 const ChatMenuScreen = () => {
   const navigation = React.useContext(NavigationContext);
@@ -40,24 +41,7 @@ const ChatMenuScreen = () => {
             <Text>New Message</Text>
           </View>
         </View>
-        <ScrollView style={styles.ScrollContainer}>
-          {chats.map((chat, index) => (
-            <View style={styles.chatContainer} key={index}>
-              <View style={styles.chatSubContainer}>
-                <View style={styles.avatarContainer}>
-                  <Image source={chat.avatar} style={styles.avatarStyle} />
-                </View>
-                <View>
-                  <Text style={styles.textStyle}>{chat.name}</Text>
-                  <Text style={styles.lastMessageStyle}>
-                    {chat.lastMessage}
-                  </Text>
-                </View>
-              </View>
-              <Text style={styles.textStyle}>{chat.time}</Text>
-            </View>
-          ))}
-        </ScrollView>
+        <ChatsContainer />
       </View>
     </View>
   );
@@ -69,10 +53,6 @@ const styles = StyleSheet.create({
   imagenStyle: {
     height: 50,
     width: 50,
-  },
-  avatarStyle: {
-    height: 80,
-    width: 80,
   },
   imageContainer: {
     paddingHorizontal: 20,
@@ -116,34 +96,5 @@ const styles = StyleSheet.create({
     paddingBottom: 8,
     width: 130,
     alignItems: "center",
-  },
-  chatContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-evenly",
-    paddingHorizontal: 15,
-    paddingVertical: 8,
-  },
-  chatSubContainer: {
-    width: "80%",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "flex-start",
-  },
-  avatarContainer: {
-    paddingRight: 10,
-  },
-  lastMessageStyle: {
-    color: "#606060",
-    width: 200,
-  },
-  textStyle: {
-    color: "black",
-    fontSize: 16,
-    fontWeight: "500",
-  },
-  ScrollContainer: {
-    marginBottom: 25,
-    height: "100%",
   },
 });
