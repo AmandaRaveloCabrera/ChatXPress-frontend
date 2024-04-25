@@ -2,6 +2,7 @@ import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import React from "react";
 import { NavigationContext } from "@react-navigation/native";
 import { user } from "../../data/user";
+import loginUser from "../../services/LoginUserService";
 
 /**
  * The loginForm component is responsible for displaying
@@ -14,24 +15,30 @@ const LoginForm = () => {
     name: "",
     email: "",
     password: "",
+    nameRole: "user",
   };
   const [currentUser, setCurrentUser] = React.useState(initialUserState);
   const returnWelcomeScreen = () => {
     navigation?.navigate("Home");
   };
   const fetchLoginUser = () => {
-    if (user.name == "" || user.email == "" || user.password == "") {
-      alert("Debes introducir todos los datos.");
-    }
-    if (
-      currentUser.name == user.name &&
-      currentUser.email == user.email &&
-      currentUser.password == user.password
-    ) {
-      navigation?.navigate("Main Page");
-    } else {
-      alert("Usuario incorrecto.");
-    }
+    const fetchData = async () => {
+      const data = await loginUser({
+        email: currentUser.email,
+        password: currentUser.password,
+        nameRole: currentUser.nameRole,
+      });
+
+      if (data != null) {
+        alert("Bienvenido " + data.username);
+        navigation?.navigate("Main Page");
+      } else {
+        alert("Usuario incorrecto. Intentelo otra vez!");
+      }
+    };
+
+    fetchData();
+    setCurrentUser(initialUserState);
   };
   const handleOnChange = (value: string, input: string) => {
     setCurrentUser((prevState) => ({ ...prevState, [input]: value }));
