@@ -1,6 +1,14 @@
-import { ScrollView, StyleSheet, Text, View, Image } from "react-native";
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Pressable,
+} from "react-native";
 import React from "react";
 import { chats } from "../../data/chats";
+import { NavigationContext } from "@react-navigation/native";
 
 /**
  * The ChatsContainer component is responsible for displaying chats
@@ -8,21 +16,27 @@ import { chats } from "../../data/chats";
  */
 
 const ChatsContainer = () => {
+  const navigation = React.useContext(NavigationContext);
+  const navigateChat = () => {
+    navigation?.navigate("Chat");
+  };
   return (
     <ScrollView style={styles.ScrollContainer}>
-      {chats.map((chat, index) => (
-        <View style={styles.chatContainer} key={index}>
-          <View style={styles.chatSubContainer}>
-            <View style={styles.avatarContainer}>
-              <Image source={chat.avatar} style={styles.avatarStyle} />
+      {chats.map((chat) => (
+        <Pressable onPress={navigateChat} key={chat.id}>
+          <View style={styles.chatContainer}>
+            <View style={styles.chatSubContainer}>
+              <View style={styles.avatarContainer}>
+                <Image source={chat.avatar} style={styles.avatarStyle} />
+              </View>
+              <View>
+                <Text style={styles.textStyle}>{chat.name}</Text>
+                <Text style={styles.lastMessageStyle}>{chat.lastMessage}</Text>
+              </View>
             </View>
-            <View>
-              <Text style={styles.textStyle}>{chat.name}</Text>
-              <Text style={styles.lastMessageStyle}>{chat.lastMessage}</Text>
-            </View>
+            <Text style={styles.textStyle}>{chat.time}</Text>
           </View>
-          <Text style={styles.textStyle}>{chat.time}</Text>
-        </View>
+        </Pressable>
       ))}
     </ScrollView>
   );
