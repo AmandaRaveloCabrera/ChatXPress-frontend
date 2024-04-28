@@ -3,7 +3,8 @@
  */
 
 export const user = {
-  name: "Jaimito",
-  email: "jaimito@gmail.com",
+  id: 0,
+  name: "david",
+  email: "david@gmail.com",
   password: "12345",
 };

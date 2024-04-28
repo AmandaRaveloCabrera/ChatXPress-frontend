@@ -9,6 +9,7 @@ import {
 import React from "react";
 import { AntDesign } from "@expo/vector-icons";
 import { NavigationContext } from "@react-navigation/native";
+import { currentChat } from "../../data/CurrentChat";
 
 const HeaderChat = () => {
   const imageAvatar: ImageProps = require("../../assets/images/avatarPredefinido.png");
@@ -21,9 +22,9 @@ const HeaderChat = () => {
       <Pressable onPress={navigateMenuChats}>
         <AntDesign name="caretleft" size={40} color="#51A0B1" />
       </Pressable>
-      <View>
-        <Text style={styles.nameStyle}>Manolito el de La Esquina</Text>
-        <Text style={styles.timeStyle}>Ayer 12:45</Text>
+      <View style={styles.textContainer}>
+        <Text style={styles.nameStyle}>{currentChat.name}</Text>
+        <Text style={styles.timeStyle}>{currentChat.timeConnected}</Text>
       </View>
       <Image source={imageAvatar} style={styles.avatarStyle} />
     </View>
@@ -43,6 +44,10 @@ const styles = StyleSheet.create({
   avatarStyle: {
     height: 50,
     width: 50,
+  },
+  textContainer: {
+    width: "50%",
+    alignItems: "center",
   },
   nameStyle: {
     color: "white",
