@@ -2,7 +2,7 @@ import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import React from "react";
 import { NavigationContext } from "@react-navigation/native";
 import { user } from "../../data/user";
-import loginUser from "../../services/LoginUserService";
+import { UserService } from "../../services/UserService";
 
 /**
  * The loginForm component is responsible for displaying
@@ -23,7 +23,7 @@ const LoginForm = () => {
   };
   const fetchLoginUser = () => {
     const fetchData = async () => {
-      const data = await loginUser({
+      const data = await UserService.login({
         email: currentUser.email,
         password: currentUser.password,
         nameRole: currentUser.nameRole,

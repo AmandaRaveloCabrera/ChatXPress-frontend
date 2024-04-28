@@ -3,6 +3,8 @@ import { FontAwesome } from "@expo/vector-icons";
 import React from "react";
 import { NavigationContext } from "@react-navigation/native";
 import ChatsContainer from "../../components/chatscontainer/ChatsContainer";
+import { UserService } from "../../services/UserService";
+import { AsyncStore } from "../../services/AsyncStoreService";
 
 /**
  * This is the chatmenu screen.
@@ -15,7 +17,11 @@ import ChatsContainer from "../../components/chatscontainer/ChatsContainer";
 const ChatMenuScreen = () => {
   const navigation = React.useContext(NavigationContext);
   const signOut = () => {
-    navigation?.navigate("Home");
+    const fetchLogout = async () => {
+      await UserService.logout();
+      navigation?.navigate("Home");
+    };
+    fetchLogout();
   };
 
   return (

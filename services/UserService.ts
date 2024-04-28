@@ -6,7 +6,7 @@ import { postInitRequest } from "./RequestService";
 
 const LOGIN_PATH = URL_API + "/user/login";
 
-const loginUser = async (
+const login = async (
   user: IUserLoginRequest
 ): Promise<IUserLoginResponse | null> => {
   const request: RequestInfo = `${LOGIN_PATH}`;
@@ -23,4 +23,11 @@ const loginUser = async (
   return null;
 };
 
-export default loginUser;
+const logout = async () => {
+  await AsyncStore.removeData();
+};
+
+export const UserService = {
+  login,
+  logout,
+};
