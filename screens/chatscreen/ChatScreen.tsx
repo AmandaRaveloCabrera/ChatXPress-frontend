@@ -4,10 +4,11 @@ import {
   StyleSheet,
   Text,
   View,
-  ImageProps,
+  TextInput,
 } from "react-native";
 import React from "react";
-import { NavigationContext } from "@react-navigation/native";
+import { AntDesign } from "@expo/vector-icons";
+import { Entypo } from "@expo/vector-icons";
 import HeaderChat from "../../components/headerchat/HeaderChat";
 
 const ChatScreen = () => {
@@ -24,7 +25,15 @@ const ChatScreen = () => {
           <Text>MyChats</Text>
         </View>
         <View style={styles.inputMessageContainer}>
-          <Text>Input message</Text>
+          <Entypo name="emoji-happy" size={32} color="#7D7C7C" />
+          <View style={styles.inputContainer}>
+            <TextInput
+              placeholder="Text input"
+              style={styles.inputMessageStyle}
+              placeholderTextColor={"#FFF"}
+            />
+          </View>
+          <AntDesign name="caretright" size={36} color="#51A0B1" />
         </View>
       </View>
     </ImageBackground>
@@ -54,10 +63,22 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   inputMessageContainer: {
-    backgroundColor: "gray",
+    backgroundColor: "#D9D9D9",
     height: "10%",
     width: "100%",
+    flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-around",
+    borderTopRightRadius: 25,
+    borderTopLeftRadius: 25,
+  },
+  inputContainer: {
+    backgroundColor: "#7D7C7C",
+    width: "75%",
+    paddingHorizontal: "5%",
+    borderRadius: 20,
+  },
+  inputMessageStyle: {
+    color: "white",
   },
 });
