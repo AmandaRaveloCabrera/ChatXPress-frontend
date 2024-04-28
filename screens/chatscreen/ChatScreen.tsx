@@ -4,12 +4,10 @@ import {
   StyleSheet,
   Text,
   View,
-  TextInput,
 } from "react-native";
 import React from "react";
-import { AntDesign } from "@expo/vector-icons";
-import { Entypo } from "@expo/vector-icons";
 import HeaderChat from "../../components/headerchat/HeaderChat";
+import InputMessage from "../../components/inputmessage/InputMessage";
 
 const ChatScreen = () => {
   const background: ImageBackgroundProps = require("../../assets/images/fondo.jpg");
@@ -22,19 +20,9 @@ const ChatScreen = () => {
       <View style={styles.mainContainer}>
         <HeaderChat />
         <View style={styles.messagesContainer}>
-          <Text>MyChats</Text>
+          <Text>My messages</Text>
         </View>
-        <View style={styles.inputMessageContainer}>
-          <Entypo name="emoji-happy" size={32} color="#7D7C7C" />
-          <View style={styles.inputContainer}>
-            <TextInput
-              placeholder="Text input"
-              style={styles.inputMessageStyle}
-              placeholderTextColor={"#FFF"}
-            />
-          </View>
-          <AntDesign name="caretright" size={36} color="#51A0B1" />
-        </View>
+        <InputMessage />
       </View>
     </ImageBackground>
   );
@@ -56,29 +44,10 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   messagesContainer: {
-    backgroundColor: "yellow",
+    // backgroundColor: "yellow",
     height: "75%",
     width: "100%",
     alignItems: "center",
     justifyContent: "center",
-  },
-  inputMessageContainer: {
-    backgroundColor: "#D9D9D9",
-    height: "10%",
-    width: "100%",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-around",
-    borderTopRightRadius: 25,
-    borderTopLeftRadius: 25,
-  },
-  inputContainer: {
-    backgroundColor: "#7D7C7C",
-    width: "75%",
-    paddingHorizontal: "5%",
-    borderRadius: 20,
-  },
-  inputMessageStyle: {
-    color: "white",
   },
 });
