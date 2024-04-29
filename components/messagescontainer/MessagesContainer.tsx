@@ -25,5 +25,6 @@ const styles = StyleSheet.create({
   allMessagesContainer: {
     height: "75%",
     width: "100%",
+    paddingHorizontal: 10,
   },
 });
