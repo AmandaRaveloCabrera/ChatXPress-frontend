@@ -1,9 +1,9 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const storeData = async (cookie: string) => {
+const storeData = async (resCookie: string) => {
   try {
-    await AsyncStorage.setItem("my-cookie", cookie);
-    console.log("Se ha añadido la cookie al dispositivo correctamente-");
+    await AsyncStorage.setItem("jwt", resCookie);
+    console.log("Se ha añadido la cookie al dispositivo correctamente");
   } catch (error) {
     console.log("Error al guardar la cookie");
   }
@@ -11,17 +11,27 @@ const storeData = async (cookie: string) => {
 
 const removeData = async () => {
   try {
-    await AsyncStorage.removeItem("my-cookie");
+    await AsyncStorage.removeItem("jwt");
     console.log("Se ha eliminado la cookie correctamente.");
   } catch (error) {}
 };
 
-const getCookie = async (key: string) => {
-  return await AsyncStorage.getItem(key);
+/*
+const getCookie = async () => {
+  try {
+    const resCookie = await AsyncStorage.getItem("jwt");
+    if (resCookie != null) {
+      setcookie(resCookie);
+    } else {
+      setcookie("");
+    }
+  } catch (error) {
+    setcookie("");
+  }
 };
+*/
 
 export const AsyncStore = {
   storeData,
   removeData,
-  getCookie,
 };

@@ -2,6 +2,7 @@ export const getInitRequest = (): RequestInit => {
   return {
     method: "GET",
     headers: {
+      Authorization: "",
       Accept: "application/json",
       "Content-Type": "application/json",
     },

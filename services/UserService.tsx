@@ -2,9 +2,10 @@ import URL_API from "../data/UrlApi";
 import { IUserLoginRequest } from "../interfaces/IUserLoginRequest";
 import { IUserLoginResponse } from "../interfaces/IUserLoginResponse";
 import { AsyncStore } from "./AsyncStoreService";
-import { postInitRequest } from "./RequestService";
+import { getInitRequest, postInitRequest } from "./RequestService";
 
 const LOGIN_PATH = URL_API + "/user/login";
+const GET_USER_PATH = URL_API + "/user/email/";
 
 const login = async (
   user: IUserLoginRequest
@@ -27,7 +28,15 @@ const logout = async () => {
   await AsyncStore.removeData();
 };
 
+const getUserByEmail = async (email: string) => {
+  const request: RequestInfo = `${GET_USER_PATH}${email}`;
+  const response: Response = await fetch(request, getInitRequest());
+  console.log(response.status);
+  console.log(await response.json());
+};
+
 export const UserService = {
   login,
   logout,
+  getUserByEmail,
 };

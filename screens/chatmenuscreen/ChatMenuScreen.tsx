@@ -1,4 +1,11 @@
-import { StyleSheet, Text, View, Image, Pressable } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Pressable,
+  TextInput,
+} from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import React from "react";
 import { NavigationContext } from "@react-navigation/native";
@@ -15,7 +22,16 @@ import { AsyncStore } from "../../services/AsyncStoreService";
  */
 
 const ChatMenuScreen = () => {
+  const [displayInputSearch, setdisplayInputSearch] = React.useState(false);
+  const [email, setemail] = React.useState("");
   const navigation = React.useContext(NavigationContext);
+  const handleSubmit = () => {
+    const fetchData = async () => {
+      await UserService.getUserByEmail(email);
+    };
+    fetchData();
+    console.log("->" + email);
+  };
   const signOut = () => {
     const fetchLogout = async () => {
       await UserService.logout();
@@ -33,11 +49,24 @@ const ChatMenuScreen = () => {
         </Pressable>
       </View>
       <View style={styles.chatsContainer}>
-        <View style={styles.imageContainer}>
-          <Image
-            source={require("../../assets/images/icono.png")}
-            style={styles.imagenStyle}
-          />
+        <View style={styles.inputSearchContainer}>
+          <Pressable onPress={() => setdisplayInputSearch(!displayInputSearch)}>
+            <FontAwesome name="search" size={40} color="#51A0B1" />
+          </Pressable>
+          {displayInputSearch ? (
+            <View style={styles.inputContainer}>
+              <TextInput
+                placeholder="Introduzca un email"
+                style={[styles.inputStyle, styles.textStyle]}
+                placeholderTextColor={"#999"}
+                value={email}
+                onChangeText={setemail}
+              />
+              <Pressable onPress={handleSubmit}>
+                <FontAwesome name="play" size={30} color="#51A0B1" />
+              </Pressable>
+            </View>
+          ) : null}
         </View>
         <View style={styles.tabContainer}>
           <View style={styles.tabBorder}>
@@ -60,11 +89,13 @@ const styles = StyleSheet.create({
     height: 50,
     width: 50,
   },
-  imageContainer: {
+  inputSearchContainer: {
     paddingHorizontal: 20,
     paddingBottom: 20,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
   },
-
   mainContainer: {
     backgroundColor: "#32659D",
     height: "100%",
@@ -102,5 +133,20 @@ const styles = StyleSheet.create({
     paddingBottom: 8,
     width: 130,
     alignItems: "center",
+  },
+  inputContainer: {
+    width: "85%",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-around",
+  },
+  inputStyle: {
+    borderBottomWidth: 4,
+    borderBottomColor: "#51A0B1",
+    width: "80%",
+  },
+  textStyle: {
+    color: "black",
+    fontSize: 18,
   },
 });

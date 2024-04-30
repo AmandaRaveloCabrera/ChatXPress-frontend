@@ -4,8 +4,13 @@ import { currentChat } from "../../data/CurrentChat";
 import Message from "../message/Message";
 
 const MessagesContainer = () => {
+  const scrollViewRef = React.useRef<ScrollView>(null);
   return (
-    <ScrollView style={styles.allMessagesContainer}>
+    <ScrollView
+      style={styles.allMessagesContainer}
+      onContentSizeChange={() => scrollViewRef.current?.scrollToEnd()}
+      ref={scrollViewRef}
+    >
       {currentChat.messages.map((message) => (
         <Message
           id={message.id}
