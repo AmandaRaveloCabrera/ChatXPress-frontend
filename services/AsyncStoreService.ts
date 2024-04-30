@@ -16,22 +16,12 @@ const removeData = async () => {
   } catch (error) {}
 };
 
-/*
 const getCookie = async () => {
-  try {
-    const resCookie = await AsyncStorage.getItem("jwt");
-    if (resCookie != null) {
-      setcookie(resCookie);
-    } else {
-      setcookie("");
-    }
-  } catch (error) {
-    setcookie("");
-  }
+  return await AsyncStorage.getItem("jwt");
 };
-*/
 
 export const AsyncStore = {
   storeData,
   removeData,
+  getCookie,
 };

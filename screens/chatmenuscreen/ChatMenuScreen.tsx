@@ -27,7 +27,10 @@ const ChatMenuScreen = () => {
   const navigation = React.useContext(NavigationContext);
   const handleSubmit = () => {
     const fetchData = async () => {
-      await UserService.getUserByEmail(email);
+      const cookie = await AsyncStore.getCookie();
+      if (cookie) {
+        await UserService.getUserByEmail(email, cookie);
+      }
     };
     fetchData();
     console.log("->" + email);

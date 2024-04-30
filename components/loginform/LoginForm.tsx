@@ -1,7 +1,6 @@
 import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import React from "react";
 import { NavigationContext } from "@react-navigation/native";
-import { user } from "../../data/user";
 import { UserService } from "../../services/UserService";
 
 /**
