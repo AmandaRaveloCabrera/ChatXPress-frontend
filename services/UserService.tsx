@@ -14,10 +14,10 @@ const login = async (
   const response: Response = await fetch(request, postInitRequestLogin(user));
 
   if (response.status === 200) {
-    const cookie: string | null = response.headers.get("Set-Cookie");
-    if (cookie) {
-      await AsyncStore.storeData(cookie);
-    }
+    // const cookie: string | null = response.headers.get("Set-Cookie");
+    // if (cookie) {
+    //   await AsyncStore.storeData(cookie);
+    // }
     const jsonResponse: IUserLoginResponse = await response.json();
     return jsonResponse;
   }

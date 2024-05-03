@@ -1,17 +1,10 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  Pressable,
-  TextInput,
-} from "react-native";
+import { StyleSheet, Text, View, Pressable, TextInput } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import React from "react";
 import { NavigationContext } from "@react-navigation/native";
 import ChatsContainer from "../../components/chatscontainer/ChatsContainer";
 import { UserService } from "../../services/UserService";
-import { AsyncStore } from "../../services/AsyncStoreService";
+//import { AsyncStore } from "../../services/AsyncStoreService";
 
 /**
  * This is the chatmenu screen.
@@ -25,16 +18,16 @@ const ChatMenuScreen = () => {
   const [displayInputSearch, setdisplayInputSearch] = React.useState(false);
   const [email, setemail] = React.useState("");
   const navigation = React.useContext(NavigationContext);
-  const handleSubmit = () => {
-    const fetchData = async () => {
-      const cookie = await AsyncStore.getCookie();
-      if (cookie) {
-        await UserService.getUserByEmail(email, cookie);
-      }
-    };
-    fetchData();
-    console.log("->" + email);
-  };
+  //const handleSubmit = () => {
+  //   const fetchData = async () => {
+  //     const cookie = await AsyncStore.getCookie();
+  //     if (cookie) {
+  //       await UserService.getUserByEmail(email, cookie);
+  //     }
+  //   };
+  //   fetchData();
+  //   console.log("->" + email);
+  // };
   const signOut = () => {
     const fetchLogout = async () => {
       await UserService.logout();
@@ -65,7 +58,7 @@ const ChatMenuScreen = () => {
                 value={email}
                 onChangeText={setemail}
               />
-              <Pressable onPress={handleSubmit}>
+              <Pressable>
                 <FontAwesome name="play" size={30} color="#51A0B1" />
               </Pressable>
             </View>

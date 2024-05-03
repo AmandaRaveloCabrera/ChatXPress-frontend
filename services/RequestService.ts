@@ -1,8 +1,8 @@
-export const getInitRequest = (cookie: string): RequestInit => {
+export const getInitRequest = (token: string): RequestInit => {
   return {
     method: "GET",
     headers: {
-      Authorization: cookie,
+      Authorization: token,
       Accept: "application/json",
       "Content-Type": "application/json",
     },
@@ -11,15 +11,15 @@ export const getInitRequest = (cookie: string): RequestInit => {
 
 export const postInitRequestLogin = (
   body?: object,
-  cookie?: string
+  token?: string
 ): RequestInit => {
   if (body) {
-    if (cookie) {
+    if (token) {
       return {
         credentials: "include",
         method: "POST",
         headers: {
-          Authorization: cookie,
+          Authorization: token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },

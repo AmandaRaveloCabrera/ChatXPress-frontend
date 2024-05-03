@@ -27,6 +27,7 @@ const LoginForm = () => {
         password: currentUser.password,
         nameRole: currentUser.nameRole,
       });
+      console.log(data);
 
       if (data != null) {
         alert("Bienvenido " + data.username);
