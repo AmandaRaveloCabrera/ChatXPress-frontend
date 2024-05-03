@@ -1,23 +1,25 @@
 import URL_API from "../data/UrlApi";
+import { IChatsResponse } from "../interfaces/IChatsResponse";
 import { IUserLoginRequest } from "../interfaces/IUserLoginRequest";
 import { IUserLoginResponse } from "../interfaces/IUserLoginResponse";
 import { AsyncStore } from "./AsyncStoreService";
-import { getInitRequest, postInitRequestLogin } from "./RequestService";
+import { getInitRequest, postInitRequest } from "./RequestService";
 
 const LOGIN_PATH = URL_API + "/user/login";
 const GET_USER_PATH = URL_API + "/user/email/";
+const GET_CHATS_BY_ID_USER = URL_API + "/chats/";
 
 const login = async (
   user: IUserLoginRequest
 ): Promise<IUserLoginResponse | null> => {
   const request: RequestInfo = `${LOGIN_PATH}`;
-  const response: Response = await fetch(request, postInitRequestLogin(user));
+  const response: Response = await fetch(request, postInitRequest(user));
 
   if (response.status === 200) {
-    // const cookie: string | null = response.headers.get("Set-Cookie");
-    // if (cookie) {
-    //   await AsyncStore.storeData(cookie);
-    // }
+    const cookie: string | null = response.headers.get("Set-Cookie");
+    if (cookie) {
+      await AsyncStore.storeData(cookie);
+    }
     const jsonResponse: IUserLoginResponse = await response.json();
     return jsonResponse;
   }
@@ -35,8 +37,21 @@ const getUserByEmail = async (email: string, cookie: string) => {
   console.log(await response.json());
 };
 
+const getChatsByIdUser = async (id: string) => {
+  const request: RequestInfo = `${GET_CHATS_BY_ID_USER}${id}`;
+  const response: Response = await fetch(request, getInitRequest());
+  console.log(response.status);
+
+  if (response.status == 200) {
+    const jsonResponse: IChatsResponse[] = await response.json();
+    return jsonResponse;
+  }
+  return null;
+};
+
 export const UserService = {
   login,
   logout,
   getUserByEmail,
+  getChatsByIdUser,
 };

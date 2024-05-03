@@ -4,6 +4,8 @@ import React from "react";
 import { NavigationContext } from "@react-navigation/native";
 import ChatsContainer from "../../components/chatscontainer/ChatsContainer";
 import { UserService } from "../../services/UserService";
+import { currentUserContext } from "../../context/LoginContext";
+import { IChatsResponse } from "../../interfaces/IChatsResponse";
 //import { AsyncStore } from "../../services/AsyncStoreService";
 
 /**
@@ -17,17 +19,14 @@ import { UserService } from "../../services/UserService";
 const ChatMenuScreen = () => {
   const [displayInputSearch, setdisplayInputSearch] = React.useState(false);
   const [email, setemail] = React.useState("");
+  const [currentChat, setCurrentChat] = React.useState<IChatsResponse[]>();
+  const { currentUser } = React.useContext(currentUserContext);
+  const [loading, setLoading] = React.useState(false);
   const navigation = React.useContext(NavigationContext);
-  //const handleSubmit = () => {
-  //   const fetchData = async () => {
-  //     const cookie = await AsyncStore.getCookie();
-  //     if (cookie) {
-  //       await UserService.getUserByEmail(email, cookie);
-  //     }
-  //   };
-  //   fetchData();
-  //   console.log("->" + email);
-  // };
+  const handleSubmit = () => {
+    setLoading(!loading);
+    console.log(currentChat);
+  };
   const signOut = () => {
     const fetchLogout = async () => {
       await UserService.logout();
@@ -35,6 +34,29 @@ const ChatMenuScreen = () => {
     };
     fetchLogout();
   };
+
+  React.useEffect(() => {
+    setLoading(true);
+    const retrieveChats = async () => {
+      try {
+        const data = await UserService.getChatsByIdUser(
+          currentUser.id.toString()
+        );
+        if (data) {
+          setCurrentChat(data);
+        } else {
+          console.log("F");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    setTimeout(() => {
+      retrieveChats();
+      setLoading(false);
+    }, 2000);
+  }, []);
 
   return (
     <View style={styles.mainContainer}>
@@ -58,7 +80,7 @@ const ChatMenuScreen = () => {
                 value={email}
                 onChangeText={setemail}
               />
-              <Pressable>
+              <Pressable onPress={handleSubmit}>
                 <FontAwesome name="play" size={30} color="#51A0B1" />
               </Pressable>
             </View>
@@ -72,7 +94,7 @@ const ChatMenuScreen = () => {
             <Text>New Message</Text>
           </View>
         </View>
-        <ChatsContainer />
+        {loading ? <Text>Cargando...</Text> : <ChatsContainer />}
       </View>
     </View>
   );

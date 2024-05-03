@@ -1,18 +1,24 @@
-export const getInitRequest = (token: string): RequestInit => {
+export const getInitRequest = (token?: string): RequestInit => {
+  if (token) {
+    return {
+      method: "GET",
+      headers: {
+        Authorization: token,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    };
+  }
   return {
     method: "GET",
     headers: {
-      Authorization: token,
       Accept: "application/json",
       "Content-Type": "application/json",
     },
   };
 };
 
-export const postInitRequestLogin = (
-  body?: object,
-  token?: string
-): RequestInit => {
+export const postInitRequest = (body?: object, token?: string): RequestInit => {
   if (body) {
     if (token) {
       return {

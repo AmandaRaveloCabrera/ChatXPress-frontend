@@ -2,6 +2,7 @@ import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import React from "react";
 import { NavigationContext } from "@react-navigation/native";
 import { UserService } from "../../services/UserService";
+import { currentUserContext } from "../../context/LoginContext";
 
 /**
  * The loginForm component is responsible for displaying
@@ -10,27 +11,30 @@ import { UserService } from "../../services/UserService";
 
 const LoginForm = () => {
   const navigation = React.useContext(NavigationContext);
+  const { setCurrentUser, setIsActive } = React.useContext(currentUserContext);
   const initialUserState = {
     name: "",
     email: "",
     password: "",
     nameRole: "user",
   };
-  const [currentUser, setCurrentUser] = React.useState(initialUserState);
+  const [userLogin, setUserLogin] = React.useState(initialUserState);
   const returnWelcomeScreen = () => {
     navigation?.navigate("Home");
   };
   const fetchLoginUser = () => {
     const fetchData = async () => {
       const data = await UserService.login({
-        email: currentUser.email,
-        password: currentUser.password,
-        nameRole: currentUser.nameRole,
+        email: userLogin.email,
+        password: userLogin.password,
+        nameRole: userLogin.nameRole,
       });
-      console.log(data);
 
       if (data != null) {
+        setCurrentUser(data);
+        setIsActive(true);
         alert("Bienvenido " + data.username);
+
         navigation?.navigate("Main Page");
       } else {
         alert("Usuario incorrecto. Intentelo otra vez!");
@@ -38,10 +42,10 @@ const LoginForm = () => {
     };
 
     fetchData();
-    setCurrentUser(initialUserState);
+    setUserLogin(initialUserState);
   };
   const handleOnChange = (value: string, input: string) => {
-    setCurrentUser((prevState) => ({ ...prevState, [input]: value }));
+    setUserLogin((prevState) => ({ ...prevState, [input]: value }));
   };
   return (
     <View style={styles.formContainer}>
@@ -50,14 +54,14 @@ const LoginForm = () => {
           placeholder="Name"
           style={[styles.inputStyle, styles.textStyle]}
           placeholderTextColor={"#CCC"}
-          value={currentUser.name}
+          value={userLogin.name}
           onChangeText={(name) => handleOnChange(name, "name")}
         />
         <TextInput
           placeholder="Email"
           style={[styles.inputStyle, styles.textStyle]}
           placeholderTextColor={"#CCC"}
-          value={currentUser.email}
+          value={userLogin.email}
           onChangeText={(email) => handleOnChange(email, "email")}
         />
         <TextInput
@@ -65,7 +69,7 @@ const LoginForm = () => {
           secureTextEntry={true}
           style={[styles.inputStyle, styles.textStyle]}
           placeholderTextColor={"#CCC"}
-          value={currentUser.password}
+          value={userLogin.password}
           onChangeText={(password) => handleOnChange(password, "password")}
         />
       </View>

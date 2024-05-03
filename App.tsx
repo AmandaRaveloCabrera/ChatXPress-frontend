@@ -8,6 +8,7 @@ import {
 import LoginScreen from "./screens/loginscreen/LoginScreen";
 import ChatMenuScreen from "./screens/chatmenuscreen/ChatMenuScreen";
 import ChatScreen from "./screens/chatscreen/ChatScreen";
+import CustomProvider from "./provider/CustomProvider";
 
 /**
  * This is the main component of the application,
@@ -22,16 +23,18 @@ export default function App() {
     headerShown: false,
   };
   return (
-    <View style={styles.container}>
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName="Home" screenOptions={stackOptions}>
-          <Stack.Screen name="Home" component={WelcomeScreen} />
-          <Stack.Screen name="Login" component={LoginScreen} />
-          <Stack.Screen name="Main Page" component={ChatMenuScreen} />
-          <Stack.Screen name="Chat" component={ChatScreen} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </View>
+    <CustomProvider>
+      <View style={styles.container}>
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName="Home" screenOptions={stackOptions}>
+            <Stack.Screen name="Home" component={WelcomeScreen} />
+            <Stack.Screen name="Login" component={LoginScreen} />
+            <Stack.Screen name="Main Page" component={ChatMenuScreen} />
+            <Stack.Screen name="Chat" component={ChatScreen} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </View>
+    </CustomProvider>
   );
 }
 
