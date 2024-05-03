@@ -5,10 +5,12 @@ import {
   View,
   Image,
   Pressable,
+  ImageProps,
 } from "react-native";
 import React from "react";
-import { chats } from "../../data/chats";
+//import { chats } from "../../data/chats";
 import { NavigationContext } from "@react-navigation/native";
+import { allChatsFromUserContext } from "../../context/AllChatsContext";
 
 /**
  * The ChatsContainer component is responsible for displaying chats
@@ -17,24 +19,26 @@ import { NavigationContext } from "@react-navigation/native";
 
 const ChatsContainer = () => {
   const navigation = React.useContext(NavigationContext);
+  const { chats } = React.useContext(allChatsFromUserContext);
+  const avatarDefault: ImageProps = require("../../assets/images/avatarPredefinido.png");
   const navigateChat = () => {
     navigation?.navigate("Chat");
   };
   return (
     <ScrollView style={styles.ScrollContainer}>
       {chats.map((chat) => (
-        <Pressable onPress={navigateChat} key={chat.id}>
+        <Pressable onPress={navigateChat} key={chat.idChats}>
           <View style={styles.chatContainer}>
             <View style={styles.chatSubContainer}>
               <View style={styles.avatarContainer}>
-                <Image source={chat.avatar} style={styles.avatarStyle} />
+                <Image source={avatarDefault} style={styles.avatarStyle} />
               </View>
               <View>
-                <Text style={styles.textStyle}>{chat.name}</Text>
+                <Text style={styles.textStyle}>{chat.nameGuestUser}</Text>
                 <Text style={styles.lastMessageStyle}>{chat.lastMessage}</Text>
               </View>
             </View>
-            <Text style={styles.textStyle}>{chat.time}</Text>
+            <Text style={styles.textStyle}>12:12</Text>
           </View>
         </Pressable>
       ))}

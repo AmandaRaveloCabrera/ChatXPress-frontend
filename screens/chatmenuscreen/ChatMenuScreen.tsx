@@ -6,6 +6,7 @@ import ChatsContainer from "../../components/chatscontainer/ChatsContainer";
 import { UserService } from "../../services/UserService";
 import { currentUserContext } from "../../context/LoginContext";
 import { IChatsResponse } from "../../interfaces/IChatsResponse";
+import { allChatsFromUserContext } from "../../context/AllChatsContext";
 //import { AsyncStore } from "../../services/AsyncStoreService";
 
 /**
@@ -19,13 +20,12 @@ import { IChatsResponse } from "../../interfaces/IChatsResponse";
 const ChatMenuScreen = () => {
   const [displayInputSearch, setdisplayInputSearch] = React.useState(false);
   const [email, setemail] = React.useState("");
-  const [currentChat, setCurrentChat] = React.useState<IChatsResponse[]>();
+  const { setChats } = React.useContext(allChatsFromUserContext);
   const { currentUser } = React.useContext(currentUserContext);
   const [loading, setLoading] = React.useState(false);
   const navigation = React.useContext(NavigationContext);
   const handleSubmit = () => {
-    setLoading(!loading);
-    console.log(currentChat);
+    console.log(":)");
   };
   const signOut = () => {
     const fetchLogout = async () => {
@@ -43,7 +43,7 @@ const ChatMenuScreen = () => {
           currentUser.id.toString()
         );
         if (data) {
-          setCurrentChat(data);
+          setChats(data);
         } else {
           console.log("F");
         }
@@ -55,7 +55,7 @@ const ChatMenuScreen = () => {
     setTimeout(() => {
       retrieveChats();
       setLoading(false);
-    }, 2000);
+    }, 1000);
   }, []);
 
   return (
