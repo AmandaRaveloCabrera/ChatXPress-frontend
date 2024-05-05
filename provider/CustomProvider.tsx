@@ -17,7 +17,7 @@ const CustomProvider = ({ children }: CustomProviderProps) => {
     {} as IUserLoginResponse
   );
   const [chats, setChats] = React.useState<IChatsResponse[]>(
-    {} as IChatsResponse[]
+    [] as IChatsResponse[]
   );
 
   const currentUserData: ICurrentUserContext = {

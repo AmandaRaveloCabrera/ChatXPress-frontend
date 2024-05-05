@@ -11,6 +11,7 @@ import React from "react";
 //import { chats } from "../../data/chats";
 import { NavigationContext } from "@react-navigation/native";
 import { allChatsFromUserContext } from "../../context/AllChatsContext";
+import { IChatsResponse } from "../../interfaces/IChatsResponse";
 
 /**
  * The ChatsContainer component is responsible for displaying chats
@@ -21,13 +22,17 @@ const ChatsContainer = () => {
   const navigation = React.useContext(NavigationContext);
   const { chats } = React.useContext(allChatsFromUserContext);
   const avatarDefault: ImageProps = require("../../assets/images/avatarPredefinido.png");
-  const navigateChat = () => {
-    navigation?.navigate("Chat");
+  const navigateChat = (id: String) => {
+    console.log(id);
+    //navigation?.navigate("Chat");
   };
   return (
     <ScrollView style={styles.ScrollContainer}>
-      {chats.map((chat) => (
-        <Pressable onPress={navigateChat} key={chat.idChats}>
+      {chats.map((chat: IChatsResponse) => (
+        <Pressable
+          onPress={() => navigateChat(chat.idGuestUser)}
+          key={chat.idChats}
+        >
           <View style={styles.chatContainer}>
             <View style={styles.chatSubContainer}>
               <View style={styles.avatarContainer}>

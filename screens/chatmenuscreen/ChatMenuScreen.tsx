@@ -52,8 +52,8 @@ const ChatMenuScreen = () => {
       }
     };
 
+    retrieveChats();
     setTimeout(() => {
-      retrieveChats();
       setLoading(false);
     }, 1000);
   }, []);
