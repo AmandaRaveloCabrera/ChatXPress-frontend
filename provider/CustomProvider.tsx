@@ -6,6 +6,9 @@ import { IUserLoginResponse } from "../interfaces/IUserLoginResponse";
 import { IChatsResponse } from "../interfaces/IChatsResponse";
 import { IAllChatsContext } from "../interfaces/IAllChatsContext";
 import { allChatsFromUserContext } from "../context/AllChatsContext";
+import { ICurrentChatResponse } from "../interfaces/ICurrentChatResponse";
+import { ICurrentChatContext } from "../interfaces/ICurrentChatContext";
+import { currentChatContext } from "../context/CurrentChatContext";
 
 type CustomProviderProps = {
   children: JSX.Element | JSX.Element[];
@@ -19,6 +22,9 @@ const CustomProvider = ({ children }: CustomProviderProps) => {
   const [chats, setChats] = React.useState<IChatsResponse[]>(
     [] as IChatsResponse[]
   );
+  const [currentChat, setCurrentChat] = React.useState<ICurrentChatResponse>(
+    {} as ICurrentChatResponse
+  );
 
   const currentUserData: ICurrentUserContext = {
     currentUser: currentUser,
@@ -31,10 +37,17 @@ const CustomProvider = ({ children }: CustomProviderProps) => {
     setChats: setChats,
   };
 
+  const currentChatData: ICurrentChatContext = {
+    currentChat: currentChat,
+    setCurrentChat: setCurrentChat,
+  };
+
   return (
     <currentUserContext.Provider value={currentUserData}>
       <allChatsFromUserContext.Provider value={chatsData}>
-        {children}
+        <currentChatContext.Provider value={currentChatData}>
+          {children}
+        </currentChatContext.Provider>
       </allChatsFromUserContext.Provider>
     </currentUserContext.Provider>
   );

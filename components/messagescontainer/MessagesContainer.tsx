@@ -5,6 +5,7 @@ import Message from "../message/Message";
 
 const MessagesContainer = () => {
   const scrollViewRef = React.useRef<ScrollView>(null);
+
   return (
     <ScrollView
       style={styles.allMessagesContainer}
