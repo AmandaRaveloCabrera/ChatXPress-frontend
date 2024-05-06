@@ -1,13 +1,14 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { user } from "../../data/user";
 import { IMessageProp } from "../../interfaces/IMessageProp";
+import { currentUserContext } from "../../context/CurrentUserContext";
 
 const Message = (message: IMessageProp) => {
+  const { currentUser } = React.useContext(currentUserContext);
   return (
     <View
       style={
-        message.iduser === user.id
+        message.iduser == currentUser.id
           ? styles.messageContainerUser
           : styles.messageContainerChat
       }
@@ -15,7 +16,7 @@ const Message = (message: IMessageProp) => {
     >
       <View
         style={
-          message.iduser === user.id
+          message.iduser === currentUser.id
             ? styles.messageTextContainerUser
             : styles.messageTextContainerChat
         }
@@ -23,7 +24,7 @@ const Message = (message: IMessageProp) => {
         <Text>{message.content}</Text>
       </View>
       <View style={styles.timeContainer}>
-        <Text style={styles.timeStyle}>{message.time}</Text>
+        <Text style={styles.timeStyle}>12:12</Text>
       </View>
     </View>
   );

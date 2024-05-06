@@ -12,6 +12,8 @@ import React from "react";
 import { NavigationContext } from "@react-navigation/native";
 import { allChatsFromUserContext } from "../../context/AllChatsContext";
 import { IChatsResponse } from "../../interfaces/IChatsResponse";
+import { currentGuestUserContext } from "../../context/CurrentGuestUserContetxt";
+import { IGuestUser } from "../../interfaces/IGuestUser";
 
 /**
  * The ChatsContainer component is responsible for displaying chats
@@ -21,16 +23,21 @@ import { IChatsResponse } from "../../interfaces/IChatsResponse";
 const ChatsContainer = () => {
   const navigation = React.useContext(NavigationContext);
   const { chats } = React.useContext(allChatsFromUserContext);
+  const { setGuestUser } = React.useContext(currentGuestUserContext);
   const avatarDefault: ImageProps = require("../../assets/images/avatarPredefinido.png");
-  const navigateChat = (id: String) => {
-    console.log(id);
-    //navigation?.navigate("Chat");
+  const navigateChat = (id: String, name: String) => {
+    const data: IGuestUser = {
+      id: id.toString(),
+      name: name.toString(),
+    };
+    setGuestUser(data);
+    navigation?.navigate("Chat");
   };
   return (
     <ScrollView style={styles.ScrollContainer}>
       {chats.map((chat: IChatsResponse) => (
         <Pressable
-          onPress={() => navigateChat(chat.idGuestUser)}
+          onPress={() => navigateChat(chat.idGuestUser, chat.nameGuestUser)}
           key={chat.idChats}
         >
           <View style={styles.chatContainer}>

@@ -1,7 +1,7 @@
 import React from "react";
 
 import { ICurrentUserContext } from "../interfaces/ICurrentUserContext";
-import { currentUserContext } from "../context/LoginContext";
+import { currentUserContext } from "../context/CurrentUserContext";
 import { IUserLoginResponse } from "../interfaces/IUserLoginResponse";
 import { IChatsResponse } from "../interfaces/IChatsResponse";
 import { IAllChatsContext } from "../interfaces/IAllChatsContext";
@@ -9,6 +9,9 @@ import { allChatsFromUserContext } from "../context/AllChatsContext";
 import { ICurrentChatResponse } from "../interfaces/ICurrentChatResponse";
 import { ICurrentChatContext } from "../interfaces/ICurrentChatContext";
 import { currentChatContext } from "../context/CurrentChatContext";
+import { IGuestUser } from "../interfaces/IGuestUser";
+import { ICurrentGuestUserContext } from "../interfaces/ICurrentGuestUserContext";
+import { currentGuestUserContext } from "../context/CurrentGuestUserContetxt";
 
 type CustomProviderProps = {
   children: JSX.Element | JSX.Element[];
@@ -24,6 +27,9 @@ const CustomProvider = ({ children }: CustomProviderProps) => {
   );
   const [currentChat, setCurrentChat] = React.useState<ICurrentChatResponse>(
     {} as ICurrentChatResponse
+  );
+  const [guestUser, setGuestUser] = React.useState<IGuestUser>(
+    {} as IGuestUser
   );
 
   const currentUserData: ICurrentUserContext = {
@@ -41,12 +47,18 @@ const CustomProvider = ({ children }: CustomProviderProps) => {
     currentChat: currentChat,
     setCurrentChat: setCurrentChat,
   };
+  const guestUserData: ICurrentGuestUserContext = {
+    guestUser: guestUser,
+    setGuestUser: setGuestUser,
+  };
 
   return (
     <currentUserContext.Provider value={currentUserData}>
       <allChatsFromUserContext.Provider value={chatsData}>
         <currentChatContext.Provider value={currentChatData}>
-          {children}
+          <currentGuestUserContext.Provider value={guestUserData}>
+            {children}
+          </currentGuestUserContext.Provider>
         </currentChatContext.Provider>
       </allChatsFromUserContext.Provider>
     </currentUserContext.Provider>

@@ -1,6 +1,6 @@
 export interface IMessageProp {
-  id: number;
+  id: string;
   content: string;
   time: string;
-  iduser: number;
+  iduser: string;
 }

@@ -4,9 +4,10 @@ import React from "react";
 import { NavigationContext } from "@react-navigation/native";
 import ChatsContainer from "../../components/chatscontainer/ChatsContainer";
 import { UserService } from "../../services/UserService";
-import { currentUserContext } from "../../context/LoginContext";
+import { currentUserContext } from "../../context/CurrentUserContext";
 import { IChatsResponse } from "../../interfaces/IChatsResponse";
 import { allChatsFromUserContext } from "../../context/AllChatsContext";
+import { ChatService } from "../../services/ChatService";
 //import { AsyncStore } from "../../services/AsyncStoreService";
 
 /**
@@ -39,7 +40,7 @@ const ChatMenuScreen = () => {
     setLoading(true);
     const retrieveChats = async () => {
       try {
-        const data = await UserService.getChatsByIdUser(
+        const data = await ChatService.getChatsByIdUser(
           currentUser.id.toString()
         );
         if (data) {

@@ -1,10 +1,11 @@
 import { ScrollView, StyleSheet } from "react-native";
 import React from "react";
-import { currentChat } from "../../data/CurrentChat";
 import Message from "../message/Message";
+import { currentChatContext } from "../../context/CurrentChatContext";
 
 const MessagesContainer = () => {
   const scrollViewRef = React.useRef<ScrollView>(null);
+  const { currentChat } = React.useContext(currentChatContext);
 
   return (
     <ScrollView
@@ -14,11 +15,11 @@ const MessagesContainer = () => {
     >
       {currentChat.messages.map((message) => (
         <Message
-          id={message.id}
-          content={message.content}
-          time={message.time}
-          iduser={message.iduser}
-          key={message.id}
+          id={message._id}
+          content={message.content.toString()}
+          time={message.dateCreated}
+          iduser={message.idUser}
+          key={message._id}
         />
       ))}
     </ScrollView>

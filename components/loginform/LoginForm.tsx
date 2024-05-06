@@ -2,7 +2,7 @@ import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import React from "react";
 import { NavigationContext } from "@react-navigation/native";
 import { UserService } from "../../services/UserService";
-import { currentUserContext } from "../../context/LoginContext";
+import { currentUserContext } from "../../context/CurrentUserContext.tsx";
 
 /**
  * The loginForm component is responsible for displaying
