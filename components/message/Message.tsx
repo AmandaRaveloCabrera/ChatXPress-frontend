@@ -24,7 +24,7 @@ const Message = (message: IMessageProp) => {
         <Text>{message.content}</Text>
       </View>
       <View style={styles.timeContainer}>
-        <Text style={styles.timeStyle}>12:12</Text>
+        <Text style={styles.timeStyle}>04/05 - 12:12</Text>
       </View>
     </View>
   );

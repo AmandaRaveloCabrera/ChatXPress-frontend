@@ -13,6 +13,7 @@ import {
   createNativeStackNavigator,
 } from "@react-navigation/native-stack";
 import { allUsersContext } from "../../context/AllUsersContext";
+import ContactsContainer from "../../components/contactscontainer/ContactsContainer";
 //import { AsyncStore } from "../../services/AsyncStoreService";
 
 /**
@@ -32,6 +33,12 @@ const ChatMenuScreen = () => {
   const navigation = React.useContext(NavigationContext);
   const handleSubmit = () => {
     alert("Proximamente en cinesss ;-;");
+  };
+  const showContacts = () => {
+    setIsVisibleChats(false);
+  };
+  const showChats = () => {
+    setIsVisibleChats(true);
   };
   const signOut = () => {
     const fetchLogout = async () => {
@@ -99,19 +106,39 @@ const ChatMenuScreen = () => {
           </Pressable>
         </View>
         <View style={styles.tabContainer}>
-          <View style={styles.tabBorder}>
-            <Text>All messages</Text>
-          </View>
-          <View style={styles.tabBorder}>
-            <Text>Contacts</Text>
-          </View>
+          <Pressable
+            style={isVisibleChats ? styles.tabBorderSelected : styles.tabBorder}
+            onPress={showChats}
+          >
+            <Text
+              style={
+                isVisibleChats ? styles.textSelected : styles.textNotSelected
+              }
+            >
+              All messages
+            </Text>
+          </Pressable>
+          <Pressable
+            style={isVisibleChats ? styles.tabBorder : styles.tabBorderSelected}
+            onPress={showContacts}
+          >
+            <Text
+              style={
+                isVisibleChats ? styles.textNotSelected : styles.textSelected
+              }
+            >
+              All Contacts
+            </Text>
+          </Pressable>
         </View>
         {loading ? (
           <View style={styles.textLoading}>
             <Text style={{ color: "black", fontSize: 20 }}>Cargando...</Text>
           </View>
-        ) : (
+        ) : isVisibleChats ? (
           <ChatsContainer />
+        ) : (
+          <ContactsContainer />
         )}
       </View>
     </View>
@@ -169,6 +196,23 @@ const styles = StyleSheet.create({
     paddingBottom: 8,
     width: 130,
     alignItems: "center",
+  },
+  tabBorderSelected: {
+    borderBottomWidth: 2,
+    borderBottomColor: "#51A0B1",
+    paddingBottom: 8,
+    width: 130,
+    alignItems: "center",
+  },
+  textSelected: {
+    color: "#51A0B1",
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+  textNotSelected: {
+    color: "black",
+    fontSize: 16,
+    fontWeight: "bold",
   },
   inputContainer: {
     width: "85%",
