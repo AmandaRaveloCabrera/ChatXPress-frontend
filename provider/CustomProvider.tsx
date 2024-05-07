@@ -25,9 +25,11 @@ const CustomProvider = ({ children }: CustomProviderProps) => {
   const [chats, setChats] = React.useState<IChatsResponse[]>(
     [] as IChatsResponse[]
   );
-  const [currentChat, setCurrentChat] = React.useState<ICurrentChatResponse>(
-    {} as ICurrentChatResponse
-  );
+  const [currentChat, setCurrentChat] = React.useState<ICurrentChatResponse>({
+    idChat: "",
+    name: "",
+    messages: [],
+  });
   const [guestUser, setGuestUser] = React.useState<IGuestUser>(
     {} as IGuestUser
   );
