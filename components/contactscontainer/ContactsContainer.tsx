@@ -10,21 +10,24 @@ import {
 import React from "react";
 import { allUsers } from "../../data/allUsers";
 import { IUsers } from "../../interfaces/IUsers";
+import { allUsersContext } from "../../context/AllUsersContext";
+import { IUsersResponse } from "../../interfaces/IUsersResponse";
 
 const ContactsContainer = () => {
+  const { users } = React.useContext(allUsersContext);
   const avatarDefault: ImageProps = require("../../assets/images/avatarPredefinido.png");
   return (
     <ScrollView style={styles.ScrollContainer}>
-      {allUsers.map((user: IUsers) => (
-        <Pressable key={user.id}>
+      {users.map((user: IUsersResponse) => (
+        <Pressable key={user._id.toString()}>
           <View style={styles.contactContainer}>
             <View style={styles.contactSubContainer}>
               <View style={styles.avatarContainer}>
                 <Image source={avatarDefault} style={styles.avatarStyle} />
               </View>
-              <View>
+              <View style={styles.textContainer}>
                 <Text style={styles.textStyle}>
-                  {user.name} {user.lastname}
+                  {user.name} {user.lastName}
                 </Text>
               </View>
             </View>
@@ -71,5 +74,8 @@ const styles = StyleSheet.create({
   avatarStyle: {
     height: 80,
     width: 80,
+  },
+  textContainer: {
+    width: "60%",
   },
 });

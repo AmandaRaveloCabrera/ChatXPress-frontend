@@ -14,7 +14,7 @@ import { ICurrentGuestUserContext } from "../interfaces/ICurrentGuestUserContext
 import { currentGuestUserContext } from "../context/CurrentGuestUserContetxt";
 import { IAllUsersContext } from "../interfaces/IAllUsersContext";
 import { allUsersContext } from "../context/AllUsersContext";
-import { IUsers } from "../interfaces/IUsers";
+import { IUsersResponse } from "../interfaces/IUsersResponse";
 
 type CustomProviderProps = {
   children: JSX.Element | JSX.Element[];
@@ -37,7 +37,9 @@ const CustomProvider = ({ children }: CustomProviderProps) => {
     {} as IGuestUser
   );
 
-  const [allUsers, setAllUsers] = React.useState<IUsers[]>([] as IUsers[]);
+  const [allUsers, setAllUsers] = React.useState<IUsersResponse[]>(
+    [] as IUsersResponse[]
+  );
 
   const currentUserData: ICurrentUserContext = {
     currentUser: currentUser,

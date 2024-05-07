@@ -1,7 +1,6 @@
-import { IGuestUser } from "./IGuestUser";
-import { IUsers } from "./IUsers";
+import { IUsersResponse } from "./IUsersResponse";
 
 export interface IAllUsersContext {
-  users: IUsers[];
+  users: IUsersResponse[];
   setUsers: Function;
 }

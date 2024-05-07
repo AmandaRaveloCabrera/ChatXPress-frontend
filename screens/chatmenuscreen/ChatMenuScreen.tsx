@@ -27,10 +27,12 @@ import ContactsContainer from "../../components/contactscontainer/ContactsContai
 const ChatMenuScreen = () => {
   const { setChats } = React.useContext(allChatsFromUserContext);
   const { setUsers } = React.useContext(allUsersContext);
-  const [isVisibleChats, setIsVisibleChats] = React.useState(true);
   const { currentUser } = React.useContext(currentUserContext);
-  const [loading, setLoading] = React.useState(false);
   const navigation = React.useContext(NavigationContext);
+
+  const [isVisibleChats, setIsVisibleChats] = React.useState(true);
+  const [loading, setLoading] = React.useState(false);
+
   const handleSubmit = () => {
     alert("Proximamente en cinesss ;-;");
   };
@@ -59,7 +61,8 @@ const ChatMenuScreen = () => {
             token
           );
           if (data) {
-            setChats(data);
+            const dataFiltered = data.filter((chat) => chat.lastMessage !== "");
+            setChats(dataFiltered);
           } else {
             setChats([]);
           }
@@ -72,12 +75,12 @@ const ChatMenuScreen = () => {
     const retrieveContacts = async () => {
       const token = await AsyncStore.getToken();
       if (token) {
-        const data = await ChatService.getChatsByIdUser(
-          currentUser.id.toString(),
-          token
-        );
+        const data = await UserService.getContacts(token);
         if (data) {
-          setUsers(data);
+          const dataFiltered = data.filter(
+            (user) => user._id !== currentUser.id
+          );
+          setUsers(dataFiltered);
         } else {
           setUsers([]);
         }
