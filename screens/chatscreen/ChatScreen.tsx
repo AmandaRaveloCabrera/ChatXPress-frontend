@@ -14,6 +14,7 @@ import { ChatService } from "../../services/ChatService";
 import { ICurrentChatRequest } from "../../interfaces/ICurrentChatRequest";
 import { currentUserContext } from "../../context/CurrentUserContext";
 import { currentGuestUserContext } from "../../context/CurrentGuestUserContetxt";
+import { AsyncStore } from "../../services/AsyncStoreService";
 const ChatScreen = () => {
   const background: ImageBackgroundProps = require("../../assets/images/fondo.jpg");
   const [loading, setLoading] = React.useState(false);
@@ -31,11 +32,19 @@ const ChatScreen = () => {
           idGuestUser: guestUser.id,
           name: guestUser.name,
         };
-        const data = await ChatService.getCurrentChat(dataRequest);
-        if (data) {
-          setCurrentChat(data);
-        } else {
-          console.log("f");
+        const token = await AsyncStore.getToken();
+
+        if (token) {
+          const data = await ChatService.getCurrentChat(dataRequest, token);
+          if (data) {
+            setCurrentChat(data);
+          } else {
+            setCurrentChat({
+              idChat: "",
+              name: "",
+              messages: [],
+            });
+          }
         }
       } catch (error) {
         console.log(error);

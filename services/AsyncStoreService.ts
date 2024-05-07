@@ -16,12 +16,12 @@ const removeData = async () => {
   } catch (error) {}
 };
 
-const getCookie = async () => {
+const getToken = async () => {
   return await AsyncStorage.getItem("jwt");
 };
 
 export const AsyncStore = {
   storeData,
   removeData,
-  getCookie,
+  getToken,
 };

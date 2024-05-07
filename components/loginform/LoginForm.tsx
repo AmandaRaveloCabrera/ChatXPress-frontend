@@ -2,7 +2,8 @@ import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import React from "react";
 import { NavigationContext } from "@react-navigation/native";
 import { UserService } from "../../services/UserService";
-import { currentUserContext } from "../../context/CurrentUserContext.tsx";
+import { currentUserContext } from "../../context/CurrentUserContext";
+import { AsyncStore } from "../../services/AsyncStoreService";
 
 /**
  * The loginForm component is responsible for displaying
@@ -32,6 +33,7 @@ const LoginForm = () => {
 
       if (data != null) {
         setCurrentUser(data);
+        await AsyncStore.storeData(data.token.toString());
         setIsActive(true);
         alert("Bienvenido " + data.username);
 

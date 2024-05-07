@@ -8,6 +8,8 @@ import { currentUserContext } from "../../context/CurrentUserContext";
 import { IChatsResponse } from "../../interfaces/IChatsResponse";
 import { allChatsFromUserContext } from "../../context/AllChatsContext";
 import { ChatService } from "../../services/ChatService";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { AsyncStore } from "../../services/AsyncStoreService";
 //import { AsyncStore } from "../../services/AsyncStoreService";
 
 /**
@@ -40,13 +42,17 @@ const ChatMenuScreen = () => {
     setLoading(true);
     const retrieveChats = async () => {
       try {
-        const data = await ChatService.getChatsByIdUser(
-          currentUser.id.toString()
-        );
-        if (data) {
-          setChats(data);
-        } else {
-          console.log("F");
+        const token = await AsyncStore.getToken();
+        if (token) {
+          const data = await ChatService.getChatsByIdUser(
+            currentUser.id.toString(),
+            token
+          );
+          if (data) {
+            setChats(data);
+          } else {
+            setChats([]);
+          }
         }
       } catch (error) {
         console.log(error);
