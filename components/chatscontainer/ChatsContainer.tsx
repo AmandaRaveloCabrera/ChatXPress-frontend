@@ -62,6 +62,7 @@ export default ChatsContainer;
 
 const styles = StyleSheet.create({
   chatContainer: {
+    backgroundColor: "#D9D9D9",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-evenly",

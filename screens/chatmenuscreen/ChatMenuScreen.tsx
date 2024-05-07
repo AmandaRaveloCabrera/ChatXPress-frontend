@@ -5,11 +5,14 @@ import { NavigationContext } from "@react-navigation/native";
 import ChatsContainer from "../../components/chatscontainer/ChatsContainer";
 import { UserService } from "../../services/UserService";
 import { currentUserContext } from "../../context/CurrentUserContext";
-import { IChatsResponse } from "../../interfaces/IChatsResponse";
 import { allChatsFromUserContext } from "../../context/AllChatsContext";
 import { ChatService } from "../../services/ChatService";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AsyncStore } from "../../services/AsyncStoreService";
+import {
+  NativeStackNavigationOptions,
+  createNativeStackNavigator,
+} from "@react-navigation/native-stack";
+import { allUsersContext } from "../../context/AllUsersContext";
 //import { AsyncStore } from "../../services/AsyncStoreService";
 
 /**
@@ -21,14 +24,14 @@ import { AsyncStore } from "../../services/AsyncStoreService";
  */
 
 const ChatMenuScreen = () => {
-  const [displayInputSearch, setdisplayInputSearch] = React.useState(false);
-  const [email, setemail] = React.useState("");
   const { setChats } = React.useContext(allChatsFromUserContext);
+  const { setUsers } = React.useContext(allUsersContext);
+  const [isVisibleChats, setIsVisibleChats] = React.useState(true);
   const { currentUser } = React.useContext(currentUserContext);
   const [loading, setLoading] = React.useState(false);
   const navigation = React.useContext(NavigationContext);
   const handleSubmit = () => {
-    console.log(":)");
+    alert("Proximamente en cinesss ;-;");
   };
   const signOut = () => {
     const fetchLogout = async () => {
@@ -59,7 +62,23 @@ const ChatMenuScreen = () => {
       }
     };
 
+    const retrieveContacts = async () => {
+      const token = await AsyncStore.getToken();
+      if (token) {
+        const data = await ChatService.getChatsByIdUser(
+          currentUser.id.toString(),
+          token
+        );
+        if (data) {
+          setUsers(data);
+        } else {
+          setUsers([]);
+        }
+      }
+    };
+
     retrieveChats();
+    retrieveContacts();
     setTimeout(() => {
       setLoading(false);
     }, 1000);
@@ -75,33 +94,25 @@ const ChatMenuScreen = () => {
       </View>
       <View style={styles.chatsContainer}>
         <View style={styles.inputSearchContainer}>
-          <Pressable onPress={() => setdisplayInputSearch(!displayInputSearch)}>
+          <Pressable onPress={handleSubmit}>
             <FontAwesome name="search" size={40} color="#51A0B1" />
           </Pressable>
-          {displayInputSearch ? (
-            <View style={styles.inputContainer}>
-              <TextInput
-                placeholder="Introduzca un email"
-                style={[styles.inputStyle, styles.textStyle]}
-                placeholderTextColor={"#999"}
-                value={email}
-                onChangeText={setemail}
-              />
-              <Pressable onPress={handleSubmit}>
-                <FontAwesome name="play" size={30} color="#51A0B1" />
-              </Pressable>
-            </View>
-          ) : null}
         </View>
         <View style={styles.tabContainer}>
           <View style={styles.tabBorder}>
-            <Text>All</Text>
+            <Text>All messages</Text>
           </View>
           <View style={styles.tabBorder}>
-            <Text>New Message</Text>
+            <Text>Contacts</Text>
           </View>
         </View>
-        {loading ? <Text>Cargando...</Text> : <ChatsContainer />}
+        {loading ? (
+          <View style={styles.textLoading}>
+            <Text style={{ color: "black", fontSize: 20 }}>Cargando...</Text>
+          </View>
+        ) : (
+          <ChatsContainer />
+        )}
       </View>
     </View>
   );
@@ -173,5 +184,10 @@ const styles = StyleSheet.create({
   textStyle: {
     color: "black",
     fontSize: 18,
+  },
+  textLoading: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
