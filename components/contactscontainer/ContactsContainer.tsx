@@ -32,7 +32,7 @@ const ContactsContainer = () => {
       {users.map((user: IUsersResponse) => (
         <Pressable
           key={user._id.toString()}
-          onPress={() => navigateChat(user._id.toString(), user.name)}
+          onPress={() => navigateChat(user._id, user.name)}
         >
           <View style={styles.contactContainer}>
             <View style={styles.contactSubContainer}>
