@@ -8,18 +8,32 @@ import {
   ImageProps,
 } from "react-native";
 import React from "react";
-import { allUsers } from "../../data/allUsers";
-import { IUsers } from "../../interfaces/IUsers";
 import { allUsersContext } from "../../context/AllUsersContext";
 import { IUsersResponse } from "../../interfaces/IUsersResponse";
+import { IGuestUser } from "../../interfaces/IGuestUser";
+import { NavigationContext } from "@react-navigation/native";
+import { currentGuestUserContext } from "../../context/CurrentGuestUserContetxt";
 
 const ContactsContainer = () => {
+  const navigation = React.useContext(NavigationContext);
+  const { setGuestUser } = React.useContext(currentGuestUserContext);
+  const navigateChat = (id: String, name: String) => {
+    const data: IGuestUser = {
+      id: id.toString(),
+      name: name.toString(),
+    };
+    setGuestUser(data);
+    navigation?.navigate("Chat");
+  };
   const { users } = React.useContext(allUsersContext);
   const avatarDefault: ImageProps = require("../../assets/images/avatarPredefinido.png");
   return (
     <ScrollView style={styles.ScrollContainer}>
       {users.map((user: IUsersResponse) => (
-        <Pressable key={user._id.toString()}>
+        <Pressable
+          key={user._id.toString()}
+          onPress={() => navigateChat(user._id.toString(), user.name)}
+        >
           <View style={styles.contactContainer}>
             <View style={styles.contactSubContainer}>
               <View style={styles.avatarContainer}>
