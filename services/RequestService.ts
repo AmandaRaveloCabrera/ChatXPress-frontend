@@ -51,3 +51,35 @@ export const postInitRequest = (body?: object, token?: string): RequestInit => {
     },
   };
 };
+
+export const putInitRequest = (body?: object, token?: string): RequestInit => {
+  if (body) {
+    if (token) {
+      return {
+        method: "PUT",
+        headers: {
+          Authorization: token,
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      };
+    }
+    return {
+      method: "PUT",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    };
+  }
+
+  return {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  };
+};

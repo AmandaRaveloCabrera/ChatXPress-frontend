@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Pressable, TextInput } from "react-native";
+import { StyleSheet, Text, View, Pressable } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import React from "react";
 import { NavigationContext } from "@react-navigation/native";
@@ -8,13 +8,9 @@ import { currentUserContext } from "../../context/CurrentUserContext";
 import { allChatsFromUserContext } from "../../context/AllChatsContext";
 import { ChatService } from "../../services/ChatService";
 import { AsyncStore } from "../../services/AsyncStoreService";
-import {
-  NativeStackNavigationOptions,
-  createNativeStackNavigator,
-} from "@react-navigation/native-stack";
 import { allUsersContext } from "../../context/AllUsersContext";
 import ContactsContainer from "../../components/contactscontainer/ContactsContainer";
-//import { AsyncStore } from "../../services/AsyncStoreService";
+import { chats } from "../../data/chats";
 
 /**
  * This is the chatmenu screen.

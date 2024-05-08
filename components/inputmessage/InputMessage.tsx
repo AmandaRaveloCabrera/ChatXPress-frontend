@@ -1,8 +1,47 @@
-import { StyleSheet, TextInput, View } from "react-native";
+import { Pressable, StyleSheet, TextInput, View } from "react-native";
 import React from "react";
 import { AntDesign, Entypo } from "@expo/vector-icons";
+import { ChatService } from "../../services/ChatService";
+import { IMessageRequest } from "../../interfaces/IMessageRequest";
+import { currentUserContext } from "../../context/CurrentUserContext";
+import { AsyncStore } from "../../services/AsyncStoreService";
+import { currentChatContext } from "../../context/CurrentChatContext";
+import { allChatsFromUserContext } from "../../context/AllChatsContext";
 
 const InputMessage = () => {
+  const [content, setContent] = React.useState("");
+  const { currentUser } = React.useContext(currentUserContext);
+  const { currentChat } = React.useContext(currentChatContext);
+  const { setChats } = React.useContext(allChatsFromUserContext);
+
+  const fetchAddMessage = () => {
+    const fetchData = async () => {
+      const message: IMessageRequest = {
+        idUser: currentUser.id,
+        content: content,
+      };
+      const token = await AsyncStore.getToken();
+      if (token) {
+        const data = await ChatService.updateCurrentChat(
+          message,
+          currentChat.idChat,
+          token
+        );
+        if (data) {
+          const chats = await ChatService.getChatsByIdUser(
+            currentUser.id.toString(),
+            token
+          );
+          if (chats) {
+            setChats(chats);
+          }
+        }
+      }
+    };
+
+    fetchData();
+    setContent("");
+  };
   return (
     <View style={styles.inputMessageContainer}>
       <Entypo name="emoji-happy" size={32} color="#7D7C7C" />
@@ -11,9 +50,13 @@ const InputMessage = () => {
           placeholder="Text input"
           style={styles.inputMessageStyle}
           placeholderTextColor={"#FFF"}
+          value={content}
+          onChangeText={setContent}
         />
       </View>
-      <AntDesign name="caretright" size={36} color="#51A0B1" />
+      <Pressable onPress={fetchAddMessage}>
+        <AntDesign name="caretright" size={36} color="#51A0B1" />
+      </Pressable>
     </View>
   );
 };
