@@ -57,8 +57,7 @@ const ChatMenuScreen = () => {
             token
           );
           if (data) {
-            const dataFiltered = data.filter((chat) => chat.lastMessage !== "");
-            setChats(dataFiltered);
+            setChats(data);
           } else {
             setChats([]);
           }
