@@ -2,6 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { IMessageProp } from "../../interfaces/IMessageProp";
 import { currentUserContext } from "../../context/CurrentUserContext";
+import TimeFormatter from "../../utils/TimeFormatter";
 
 const Message = (message: IMessageProp) => {
   const { currentUser } = React.useContext(currentUserContext);
@@ -24,7 +25,9 @@ const Message = (message: IMessageProp) => {
         <Text>{message.content}</Text>
       </View>
       <View style={styles.timeContainer}>
-        <Text style={styles.timeStyle}>04/05 - 12:12</Text>
+        <Text style={styles.timeStyle}>
+          {TimeFormatter.formatTimeInMessage(message.time)}
+        </Text>
       </View>
     </View>
   );

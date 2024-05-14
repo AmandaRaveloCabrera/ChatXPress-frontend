@@ -11,6 +11,7 @@ import { NavigationContext } from "@react-navigation/native";
 import { currentGuestUserContext } from "../../context/CurrentGuestUserContetxt";
 import { IGuestUser } from "../../interfaces/IGuestUser";
 import { IChatsResponse } from "../../interfaces/IChatsResponse";
+import TimeFormatter from "../../utils/TimeFormatter";
 
 const Chat = (chat: IChatsResponse) => {
   const navigation = React.useContext(NavigationContext);
@@ -39,7 +40,9 @@ const Chat = (chat: IChatsResponse) => {
             <Text style={styles.lastMessageStyle}>{chat.lastMessage}</Text>
           </View>
         </View>
-        <Text style={styles.textStyle}>12:12</Text>
+        <Text style={styles.textStyle}>
+          {TimeFormatter.formatTimeInChat(chat.time)}
+        </Text>
       </View>
     </Pressable>
   );
