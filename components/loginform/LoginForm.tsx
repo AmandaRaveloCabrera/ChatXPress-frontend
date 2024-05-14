@@ -35,7 +35,6 @@ const LoginForm = () => {
         setCurrentUser(data);
         await AsyncStore.storeData(data.token.toString());
         setIsActive(true);
-        alert("Bienvenido " + data.username);
 
         navigation?.navigate("Main Page");
       } else {

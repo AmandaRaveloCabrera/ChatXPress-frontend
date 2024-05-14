@@ -10,7 +10,6 @@ import { ChatService } from "../../services/ChatService";
 import { AsyncStore } from "../../services/AsyncStoreService";
 import { allUsersContext } from "../../context/AllUsersContext";
 import ContactsContainer from "../../components/contactscontainer/ContactsContainer";
-import { chats } from "../../data/chats";
 
 /**
  * This is the chatmenu screen.
@@ -92,16 +91,14 @@ const ChatMenuScreen = () => {
   return (
     <View style={styles.mainContainer}>
       <View style={styles.headerContainer}>
-        <Text style={styles.titleStyle}>Chats</Text>
+        <Text style={styles.headerStyle}>Chats</Text>
         <Pressable onPress={signOut}>
           <FontAwesome name="sign-out" size={36} color="white" />
         </Pressable>
       </View>
       <View style={styles.chatsContainer}>
-        <View style={styles.inputSearchContainer}>
-          <Pressable onPress={handleSubmit}>
-            <FontAwesome name="search" size={40} color="#51A0B1" />
-          </Pressable>
+        <View style={styles.inputTitleContainer}>
+          <Text style={styles.titleStyle}>Welcome to Chat Xpress !!! </Text>
         </View>
         <View style={styles.tabContainer}>
           <Pressable
@@ -150,12 +147,17 @@ const styles = StyleSheet.create({
     height: 50,
     width: 50,
   },
-  inputSearchContainer: {
-    paddingHorizontal: 20,
+  inputTitleContainer: {
+    paddingTop: 10,
     paddingBottom: 20,
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: "center",
+  },
+  titleStyle: {
+    fontSize: 22,
+    color: "#32659D",
+    fontWeight: "bold",
   },
   mainContainer: {
     backgroundColor: "#32659D",
@@ -170,7 +172,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
     paddingTop: 20,
   },
-  titleStyle: {
+  headerStyle: {
     color: "white",
     fontSize: 32,
     fontWeight: "bold",
