@@ -5,7 +5,6 @@ import { ICurrentChatRequest } from "../interfaces/ICurrentChatRequest";
 import { ICurrentChatResponse } from "../interfaces/ICurrentChatResponse";
 import { IMessageCreatedResponse } from "../interfaces/IMessageCreatedResponse";
 import { IMessageRequest } from "../interfaces/IMessageRequest";
-import { IMessageResponse } from "../interfaces/IMessagesResonse";
 import {
   getInitRequest,
   postInitRequest,

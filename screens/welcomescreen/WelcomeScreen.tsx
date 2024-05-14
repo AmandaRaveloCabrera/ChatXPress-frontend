@@ -4,7 +4,6 @@ import {
   View,
   ImageBackground,
   ImageBackgroundProps,
-  Button,
   Pressable,
 } from "react-native";
 import React from "react";
