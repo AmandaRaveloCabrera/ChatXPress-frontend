@@ -50,7 +50,7 @@ const LoginForm = () => {
   };
   return (
     <View style={styles.formContainer}>
-      <View style={styles.inputContainer}>
+      <View style={styles.inputsContainer}>
         <TextInput
           placeholder="Name"
           style={[styles.inputStyle, styles.textStyle]}
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     marginTop: 50,
   },
-  inputContainer: {
+  inputsContainer: {
     height: 230,
     width: "75%",
     justifyContent: "space-around",

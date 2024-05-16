@@ -10,16 +10,16 @@ const Message = (message: IMessageProp) => {
     <View
       style={
         message.iduser == currentUser.id
-          ? styles.messageContainerUser
-          : styles.messageContainerChat
+          ? styles.messageContainerCurrentUser
+          : styles.messageContainerGuestUser
       }
       key={message.id}
     >
       <View
         style={
           message.iduser === currentUser.id
-            ? styles.messageTextContainerUser
-            : styles.messageTextContainerChat
+            ? styles.messageTextContainerCurrentUser
+            : styles.messageTextContainerGuestUser
         }
       >
         <Text>{message.content}</Text>
@@ -36,12 +36,12 @@ const Message = (message: IMessageProp) => {
 export default Message;
 
 const styles = StyleSheet.create({
-  messageContainerChat: {
+  messageContainerGuestUser: {
     height: 65,
     justifyContent: "center",
     alignItems: "flex-start",
   },
-  messageContainerUser: {
+  messageContainerCurrentUser: {
     height: 65,
     justifyContent: "center",
     alignItems: "flex-end",
@@ -52,14 +52,14 @@ const styles = StyleSheet.create({
   timeStyle: {
     color: "white",
   },
-  messageTextContainerUser: {
+  messageTextContainerCurrentUser: {
     backgroundColor: "#67D6EE",
     height: "60%",
     borderRadius: 20,
     justifyContent: "center",
     paddingHorizontal: 15,
   },
-  messageTextContainerChat: {
+  messageTextContainerGuestUser: {
     backgroundColor: "#D9D9D9",
     height: "60%",
     borderRadius: 20,

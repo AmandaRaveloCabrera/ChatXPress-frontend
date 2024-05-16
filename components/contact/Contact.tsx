@@ -65,10 +65,6 @@ const styles = StyleSheet.create({
   avatarContainer: {
     paddingRight: 10,
   },
-  lastMessageStyle: {
-    color: "#606060",
-    width: 200,
-  },
   textStyle: {
     color: "black",
     fontSize: 16,

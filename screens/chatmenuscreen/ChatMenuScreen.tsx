@@ -97,7 +97,7 @@ const ChatMenuScreen = () => {
         </Pressable>
       </View>
       <View style={styles.chatsContainer}>
-        <View style={styles.inputTitleContainer}>
+        <View style={styles.titleContainer}>
           <Text style={styles.titleStyle}>Welcome to Chat Xpress !!! </Text>
         </View>
         <View style={styles.tabContainer}>
@@ -143,11 +143,7 @@ const ChatMenuScreen = () => {
 export default ChatMenuScreen;
 
 const styles = StyleSheet.create({
-  imagenStyle: {
-    height: 50,
-    width: 50,
-  },
-  inputTitleContainer: {
+  titleContainer: {
     paddingTop: 10,
     paddingBottom: 20,
     flexDirection: "row",
@@ -213,21 +209,6 @@ const styles = StyleSheet.create({
     color: "black",
     fontSize: 16,
     fontWeight: "bold",
-  },
-  inputContainer: {
-    width: "85%",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-around",
-  },
-  inputStyle: {
-    borderBottomWidth: 4,
-    borderBottomColor: "#51A0B1",
-    width: "80%",
-  },
-  textStyle: {
-    color: "black",
-    fontSize: 18,
   },
   textLoading: {
     display: "flex",
