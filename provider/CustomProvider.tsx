@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ICurrentUserContext } from "../interfaces/users/guestuser/ICurrentUserContext";
+import { ICurrentUserContext } from "../interfaces/users/currentuser/ICurrentUserContext";
 import { currentUserContext } from "../context/CurrentUserContext";
 import { IUserLoginResponse } from "../interfaces/users/userlogin/IUserLoginResponse";
 import { IChatsResponse } from "../interfaces/chats/IChatsResponse";
@@ -10,7 +10,7 @@ import { ICurrentChatResponse } from "../interfaces/chats/ICurrentChatResponse";
 import { ICurrentChatContext } from "../interfaces/chats/ICurrentChatContext";
 import { currentChatContext } from "../context/CurrentChatContext";
 import { IGuestUser } from "../interfaces/users/guestuser/IGuestUser";
-import { ICurrentGuestUserContext } from "../interfaces/users/currentuser/ICurrentGuestUserContext";
+import { ICurrentGuestUserContext } from "../interfaces/users/guestuser/ICurrentGuestUserContext";
 import { currentGuestUserContext } from "../context/CurrentGuestUserContetxt";
 import { IAllUsersContext } from "../interfaces/users/allusers/IAllUsersContext";
 import { allUsersContext } from "../context/AllUsersContext";

@@ -1,4 +1,4 @@
-import { IGuestUser } from "../guestuser/IGuestUser";
+import { IGuestUser } from "./IGuestUser";
 
 export interface ICurrentGuestUserContext {
   guestUser: IGuestUser;
