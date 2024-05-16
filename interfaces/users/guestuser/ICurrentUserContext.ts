@@ -1,4 +1,4 @@
-import { IUserLoginResponse } from "./IUserLoginResponse";
+import { IUserLoginResponse } from "../userlogin/IUserLoginResponse";
 
 export interface ICurrentUserContext {
   currentUser: IUserLoginResponse;

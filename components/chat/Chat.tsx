@@ -9,7 +9,7 @@ import {
 import React from "react";
 import { NavigationContext } from "@react-navigation/native";
 import { currentGuestUserContext } from "../../context/CurrentGuestUserContetxt";
-import { IGuestUser } from "../../interfaces/IGuestUser";
+import { IGuestUser } from "../../interfaces/users/guestuser/IGuestUser";
 import { IChatsResponse } from "../../interfaces/chats/IChatsResponse";
 import TimeFormatter from "../../utils/TimeFormatter";
 

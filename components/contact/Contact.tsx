@@ -7,10 +7,10 @@ import {
   ImageProps,
 } from "react-native";
 import React from "react";
-import { IUsersResponse } from "../../interfaces/IUsersResponse";
+import { IUsersResponse } from "../../interfaces/users/allusers/IUsersResponse";
 import { NavigationContext } from "@react-navigation/native";
 import { currentGuestUserContext } from "../../context/CurrentGuestUserContetxt";
-import { IGuestUser } from "../../interfaces/IGuestUser";
+import { IGuestUser } from "../../interfaces/users/guestuser/IGuestUser";
 
 const Contact = (user: IUsersResponse) => {
   const avatarDefault: ImageProps = require("../../assets/images/avatarPredefinido.png");

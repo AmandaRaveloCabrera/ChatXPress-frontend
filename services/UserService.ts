@@ -1,7 +1,7 @@
 import URL_API from "../data/UrlApi";
-import { IUserLoginRequest } from "../interfaces/IUserLoginRequest";
-import { IUserLoginResponse } from "../interfaces/IUserLoginResponse";
-import { IUsersResponse } from "../interfaces/IUsersResponse";
+import { IUserLoginRequest } from "../interfaces/users/userlogin/IUserLoginRequest";
+import { IUserLoginResponse } from "../interfaces/users/userlogin/IUserLoginResponse";
+import { IUsersResponse } from "../interfaces/users/allusers/IUsersResponse";
 import { AsyncStore } from "./AsyncStoreService";
 import { getInitRequest, postInitRequest } from "./RequestService";
 

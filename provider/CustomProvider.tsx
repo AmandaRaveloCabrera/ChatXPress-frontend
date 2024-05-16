@@ -1,20 +1,20 @@
 import React from "react";
 
-import { ICurrentUserContext } from "../interfaces/ICurrentUserContext";
+import { ICurrentUserContext } from "../interfaces/users/guestuser/ICurrentUserContext";
 import { currentUserContext } from "../context/CurrentUserContext";
-import { IUserLoginResponse } from "../interfaces/IUserLoginResponse";
+import { IUserLoginResponse } from "../interfaces/users/userlogin/IUserLoginResponse";
 import { IChatsResponse } from "../interfaces/chats/IChatsResponse";
 import { IAllChatsContext } from "../interfaces/chats/IAllChatsContext";
 import { allChatsFromUserContext } from "../context/AllChatsContext";
 import { ICurrentChatResponse } from "../interfaces/chats/ICurrentChatResponse";
 import { ICurrentChatContext } from "../interfaces/chats/ICurrentChatContext";
 import { currentChatContext } from "../context/CurrentChatContext";
-import { IGuestUser } from "../interfaces/IGuestUser";
-import { ICurrentGuestUserContext } from "../interfaces/ICurrentGuestUserContext";
+import { IGuestUser } from "../interfaces/users/guestuser/IGuestUser";
+import { ICurrentGuestUserContext } from "../interfaces/users/currentuser/ICurrentGuestUserContext";
 import { currentGuestUserContext } from "../context/CurrentGuestUserContetxt";
-import { IAllUsersContext } from "../interfaces/IAllUsersContext";
+import { IAllUsersContext } from "../interfaces/users/allusers/IAllUsersContext";
 import { allUsersContext } from "../context/AllUsersContext";
-import { IUsersResponse } from "../interfaces/IUsersResponse";
+import { IUsersResponse } from "../interfaces/users/allusers/IUsersResponse";
 
 type CustomProviderProps = {
   children: JSX.Element | JSX.Element[];

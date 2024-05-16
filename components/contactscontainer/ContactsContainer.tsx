@@ -9,8 +9,8 @@ import {
 } from "react-native";
 import React from "react";
 import { allUsersContext } from "../../context/AllUsersContext";
-import { IUsersResponse } from "../../interfaces/IUsersResponse";
-import { IGuestUser } from "../../interfaces/IGuestUser";
+import { IUsersResponse } from "../../interfaces/users/allusers/IUsersResponse";
+import { IGuestUser } from "../../interfaces/users/guestuser/IGuestUser";
 import { NavigationContext } from "@react-navigation/native";
 import { currentGuestUserContext } from "../../context/CurrentGuestUserContetxt";
 
