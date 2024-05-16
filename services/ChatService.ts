@@ -3,7 +3,6 @@ import { IBodyChatRequest } from "../interfaces/chats/IBodyChatRequest";
 import { IChatsResponse } from "../interfaces/chats/IChatsResponse";
 import { ICurrentChatRequest } from "../interfaces/chats/ICurrentChatRequest";
 import { ICurrentChatResponse } from "../interfaces/chats/ICurrentChatResponse";
-import { IMessageCreatedResponse } from "../interfaces/messages/IMessageCreatedResponse";
 import { IMessageRequest } from "../interfaces/messages/IMessageRequest";
 import { IMessageResponse } from "../interfaces/messages/IMessagesResonse";
 import {
