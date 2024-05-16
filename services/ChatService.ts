@@ -5,6 +5,7 @@ import { ICurrentChatRequest } from "../interfaces/ICurrentChatRequest";
 import { ICurrentChatResponse } from "../interfaces/ICurrentChatResponse";
 import { IMessageCreatedResponse } from "../interfaces/IMessageCreatedResponse";
 import { IMessageRequest } from "../interfaces/IMessageRequest";
+import { IMessageResponse } from "../interfaces/IMessagesResonse";
 import {
   getInitRequest,
   postInitRequest,
@@ -49,11 +50,10 @@ const updateCurrentChat = async (
   );
 
   if (responseMessage.status === 200) {
-    const jsonReponseMessage: IMessageCreatedResponse =
-      await responseMessage.json();
+    const jsonReponseMessage: IMessageResponse = await responseMessage.json();
     if (jsonReponseMessage) {
       const bodyChat: IBodyChatRequest = {
-        idMessage: jsonReponseMessage.idMessage,
+        idMessage: jsonReponseMessage._id,
       };
       const responseChat: Response = await fetch(
         requestChat,
