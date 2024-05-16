@@ -98,7 +98,9 @@ const ChatMenuScreen = () => {
       </View>
       <View style={styles.chatsContainer}>
         <View style={styles.titleContainer}>
-          <Text style={styles.titleStyle}>Welcome to Chat Xpress !!! </Text>
+          <Text style={styles.titleStyle}>
+            Welcome {currentUser.username}!!!
+          </Text>
         </View>
         <View style={styles.tabContainer}>
           <Pressable
@@ -131,7 +133,7 @@ const ChatMenuScreen = () => {
             <Text style={{ color: "black", fontSize: 20 }}>Cargando...</Text>
           </View>
         ) : isVisibleChats ? (
-          <ChatsContainer />
+          <ChatsContainer setVisibleChats={setIsVisibleChats} />
         ) : (
           <ContactsContainer />
         )}
@@ -151,7 +153,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   titleStyle: {
-    fontSize: 22,
+    fontSize: 26,
     color: "#32659D",
     fontWeight: "bold",
   },
