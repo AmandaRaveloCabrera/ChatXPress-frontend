@@ -11,7 +11,7 @@ import InputMessage from "../../components/inputmessage/InputMessage";
 import MessagesContainer from "../../components/messagescontainer/MessagesContainer";
 import { currentChatContext } from "../../context/CurrentChatContext";
 import { ChatService } from "../../services/ChatService";
-import { ICurrentChatRequest } from "../../interfaces/ICurrentChatRequest";
+import { ICurrentChatRequest } from "../../interfaces/chats/ICurrentChatRequest";
 import { currentUserContext } from "../../context/CurrentUserContext";
 import { currentGuestUserContext } from "../../context/CurrentGuestUserContetxt";
 import { AsyncStore } from "../../services/AsyncStoreService";

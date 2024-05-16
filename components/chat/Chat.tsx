@@ -10,7 +10,7 @@ import React from "react";
 import { NavigationContext } from "@react-navigation/native";
 import { currentGuestUserContext } from "../../context/CurrentGuestUserContetxt";
 import { IGuestUser } from "../../interfaces/IGuestUser";
-import { IChatsResponse } from "../../interfaces/IChatsResponse";
+import { IChatsResponse } from "../../interfaces/chats/IChatsResponse";
 import TimeFormatter from "../../utils/TimeFormatter";
 
 const Chat = (chat: IChatsResponse) => {

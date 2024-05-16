@@ -1,7 +1,7 @@
 import { ScrollView, StyleSheet } from "react-native";
 import React from "react";
 import { allChatsFromUserContext } from "../../context/AllChatsContext";
-import { IChatsResponse } from "../../interfaces/IChatsResponse";
+import { IChatsResponse } from "../../interfaces/chats/IChatsResponse";
 import Chat from "../chat/Chat";
 
 /**

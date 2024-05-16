@@ -1,8 +1,8 @@
 import URL_API from "../data/UrlApi";
-import { IBodyChatRequest } from "../interfaces/IBodyChatRequest";
-import { IChatsResponse } from "../interfaces/IChatsResponse";
-import { ICurrentChatRequest } from "../interfaces/ICurrentChatRequest";
-import { ICurrentChatResponse } from "../interfaces/ICurrentChatResponse";
+import { IBodyChatRequest } from "../interfaces/chats/IBodyChatRequest";
+import { IChatsResponse } from "../interfaces/chats/IChatsResponse";
+import { ICurrentChatRequest } from "../interfaces/chats/ICurrentChatRequest";
+import { ICurrentChatResponse } from "../interfaces/chats/ICurrentChatResponse";
 import { IMessageCreatedResponse } from "../interfaces/IMessageCreatedResponse";
 import { IMessageRequest } from "../interfaces/IMessageRequest";
 import { IMessageResponse } from "../interfaces/IMessagesResonse";
