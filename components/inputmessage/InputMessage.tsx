@@ -2,7 +2,7 @@ import { Pressable, StyleSheet, TextInput, View } from "react-native";
 import React from "react";
 import { AntDesign, Entypo } from "@expo/vector-icons";
 import { ChatService } from "../../services/ChatService";
-import { IMessageRequest } from "../../interfaces/IMessageRequest";
+import { IMessageRequest } from "../../interfaces/messages/IMessageRequest";
 import { currentUserContext } from "../../context/CurrentUserContext";
 import { AsyncStore } from "../../services/AsyncStoreService";
 import { currentChatContext } from "../../context/CurrentChatContext";

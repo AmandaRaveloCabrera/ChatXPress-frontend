@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { IMessageProp } from "../../interfaces/IMessageProp";
+import { IMessageProp } from "../../interfaces/messages/IMessageProp";
 import { currentUserContext } from "../../context/CurrentUserContext";
 import TimeFormatter from "../../utils/TimeFormatter";
 

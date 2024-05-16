@@ -1,4 +1,4 @@
-import { IMessageResponse } from "../IMessagesResonse";
+import { IMessageResponse } from "../messages/IMessagesResonse";
 
 export interface ICurrentChatResponse {
   idChat: string;
