@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import React from "react";
 import { allUsersContext } from "../../context/AllUsersContext";
-import { IUsersResponse } from "../../interfaces/users/allusers/IUsersResponse";
+import { IUsersResponse } from "../../interfaces/users/allusers/IUsers";
 import { IGuestUser } from "../../interfaces/users/guestuser/IGuestUser";
 import { NavigationContext } from "@react-navigation/native";
 import { currentGuestUserContext } from "../../context/CurrentGuestUserContetxt";

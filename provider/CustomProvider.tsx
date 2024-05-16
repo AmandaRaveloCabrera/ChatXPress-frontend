@@ -14,7 +14,7 @@ import { ICurrentGuestUserContext } from "../interfaces/users/guestuser/ICurrent
 import { currentGuestUserContext } from "../context/CurrentGuestUserContetxt";
 import { IAllUsersContext } from "../interfaces/users/allusers/IAllUsersContext";
 import { allUsersContext } from "../context/AllUsersContext";
-import { IUsersResponse } from "../interfaces/users/allusers/IUsersResponse";
+import { IUsersResponse } from "../interfaces/users/allusers/IUsers";
 
 type CustomProviderProps = {
   children: JSX.Element | JSX.Element[];

@@ -1,4 +1,4 @@
-import { IUsersResponse } from "./IUsersResponse";
+import { IUsersResponse } from "./IUsers";
 
 export interface IAllUsersContext {
   users: IUsersResponse[];
