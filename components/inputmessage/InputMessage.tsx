@@ -5,13 +5,12 @@ import { ChatService } from "../../services/ChatService";
 import { IMessageRequest } from "../../interfaces/messages/IMessageRequest";
 import { currentUserContext } from "../../context/CurrentUserContext";
 import { AsyncStore } from "../../services/AsyncStoreService";
-import { currentChatContext } from "../../context/CurrentChatContext";
 import { allChatsFromUserContext } from "../../context/AllChatsContext";
+import { IInputChatProp } from "../../interfaces/messages/IInputChatProp";
 
-const InputMessage = () => {
+const InputMessage = ({ idChat }: IInputChatProp) => {
   const [content, setContent] = React.useState("");
   const { currentUser } = React.useContext(currentUserContext);
-  const { currentChat } = React.useContext(currentChatContext);
   const { setChats } = React.useContext(allChatsFromUserContext);
 
   const fetchAddMessage = () => {
@@ -24,7 +23,7 @@ const InputMessage = () => {
       if (token) {
         const data = await ChatService.updateCurrentChat(
           message,
-          currentChat.idChat,
+          idChat,
           token
         );
         if (data) {

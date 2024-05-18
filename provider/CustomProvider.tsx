@@ -6,9 +6,6 @@ import { IUserLoginResponse } from "../interfaces/users/userlogin/IUserLoginResp
 import { IChatsResponse } from "../interfaces/chats/IChatsResponse";
 import { IAllChatsContext } from "../interfaces/chats/IAllChatsContext";
 import { allChatsFromUserContext } from "../context/AllChatsContext";
-import { ICurrentChatResponse } from "../interfaces/chats/ICurrentChatResponse";
-import { ICurrentChatContext } from "../interfaces/chats/ICurrentChatContext";
-import { currentChatContext } from "../context/CurrentChatContext";
 import { IGuestUser } from "../interfaces/users/guestuser/IGuestUser";
 import { ICurrentGuestUserContext } from "../interfaces/users/guestuser/ICurrentGuestUserContext";
 import { currentGuestUserContext } from "../context/CurrentGuestUserContetxt";
@@ -28,11 +25,6 @@ const CustomProvider = ({ children }: CustomProviderProps) => {
   const [chats, setChats] = React.useState<IChatsResponse[]>(
     [] as IChatsResponse[]
   );
-  const [currentChat, setCurrentChat] = React.useState<ICurrentChatResponse>({
-    idChat: "",
-    name: "",
-    messages: [],
-  });
   const [guestUser, setGuestUser] = React.useState<IGuestUser>(
     {} as IGuestUser
   );
@@ -51,11 +43,6 @@ const CustomProvider = ({ children }: CustomProviderProps) => {
     chats: chats,
     setChats: setChats,
   };
-
-  const currentChatData: ICurrentChatContext = {
-    currentChat: currentChat,
-    setCurrentChat: setCurrentChat,
-  };
   const guestUserData: ICurrentGuestUserContext = {
     guestUser: guestUser,
     setGuestUser: setGuestUser,
@@ -68,13 +55,11 @@ const CustomProvider = ({ children }: CustomProviderProps) => {
   return (
     <currentUserContext.Provider value={currentUserData}>
       <allChatsFromUserContext.Provider value={chatsData}>
-        <currentChatContext.Provider value={currentChatData}>
-          <allUsersContext.Provider value={allUsersData}>
-            <currentGuestUserContext.Provider value={guestUserData}>
-              {children}
-            </currentGuestUserContext.Provider>
-          </allUsersContext.Provider>
-        </currentChatContext.Provider>
+        <allUsersContext.Provider value={allUsersData}>
+          <currentGuestUserContext.Provider value={guestUserData}>
+            {children}
+          </currentGuestUserContext.Provider>
+        </allUsersContext.Provider>
       </allChatsFromUserContext.Provider>
     </currentUserContext.Provider>
   );

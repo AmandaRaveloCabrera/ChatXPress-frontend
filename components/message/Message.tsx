@@ -13,7 +13,6 @@ const Message = (message: IMessageProp) => {
           ? styles.messageContainerCurrentUser
           : styles.messageContainerGuestUser
       }
-      key={message.id}
     >
       <View
         style={

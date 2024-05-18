@@ -9,16 +9,20 @@ import React from "react";
 import HeaderChat from "../../components/headerchat/HeaderChat";
 import InputMessage from "../../components/inputmessage/InputMessage";
 import MessagesContainer from "../../components/messagescontainer/MessagesContainer";
-import { currentChatContext } from "../../context/CurrentChatContext";
 import { ChatService } from "../../services/ChatService";
 import { ICurrentChatRequest } from "../../interfaces/chats/ICurrentChatRequest";
 import { currentUserContext } from "../../context/CurrentUserContext";
 import { currentGuestUserContext } from "../../context/CurrentGuestUserContetxt";
 import { AsyncStore } from "../../services/AsyncStoreService";
+import { ICurrentChatResponse } from "../../interfaces/chats/ICurrentChatResponse";
 const ChatScreen = () => {
   const background: ImageBackgroundProps = require("../../assets/images/fondo.jpg");
   const [loading, setLoading] = React.useState(false);
-  const { setCurrentChat } = React.useContext(currentChatContext);
+  const [currentChat, setCurrentChat] = React.useState<ICurrentChatResponse>({
+    idChat: "",
+    name: "",
+    messages: [],
+  });
   const { currentUser } = React.useContext(currentUserContext);
   const { guestUser } = React.useContext(currentGuestUserContext);
 
@@ -64,16 +68,16 @@ const ChatScreen = () => {
       style={styles.backgroundContainer}
     >
       <View style={styles.mainContainer}>
-        <HeaderChat />
+        <HeaderChat nameGuestUser={currentChat.name.toString()} />
         {loading ? (
           <View>
             <Text style={styles.styleText}>Cargando...</Text>
           </View>
         ) : (
-          <MessagesContainer />
+          <MessagesContainer messages={currentChat.messages} />
         )}
 
-        <InputMessage />
+        <InputMessage idChat={currentChat.idChat} />
       </View>
     </ImageBackground>
   );

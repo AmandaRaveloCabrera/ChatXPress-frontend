@@ -10,13 +10,12 @@ import React from "react";
 import { AntDesign } from "@expo/vector-icons";
 import { NavigationContext } from "@react-navigation/native";
 import { currentUserContext } from "../../context/CurrentUserContext";
-import { currentChatContext } from "../../context/CurrentChatContext";
+import { IHeaderChatProp } from "../../interfaces/messages/IHeaderChatProp";
 
-const HeaderChat = () => {
+const HeaderChat = ({ nameGuestUser }: IHeaderChatProp) => {
   const imageAvatar: ImageProps = require("../../assets/images/avatarPredefinido.png");
   const navigation = React.useContext(NavigationContext);
   const { isActive } = React.useContext(currentUserContext);
-  const { currentChat } = React.useContext(currentChatContext);
   const navigateMenuChats = () => {
     navigation?.navigate("Main Page");
   };
@@ -26,7 +25,7 @@ const HeaderChat = () => {
         <AntDesign name="caretleft" size={40} color="#51A0B1" />
       </Pressable>
       <View style={styles.textContainer}>
-        <Text style={styles.nameStyle}>{currentChat.name}</Text>
+        <Text style={styles.nameStyle}>{nameGuestUser}</Text>
         <Text style={styles.timeStyle}>
           {isActive ? "En linea" : "off line"}
         </Text>

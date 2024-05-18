@@ -28,9 +28,6 @@ const ChatMenuScreen = () => {
   const [isVisibleChats, setIsVisibleChats] = React.useState(true);
   const [loading, setLoading] = React.useState(false);
 
-  const handleSubmit = () => {
-    alert("Proximamente en cinesss ;-;");
-  };
   const showContacts = () => {
     setIsVisibleChats(false);
   };
