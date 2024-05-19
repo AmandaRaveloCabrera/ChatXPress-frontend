@@ -7,12 +7,12 @@ import {
   ImageProps,
 } from "react-native";
 import React from "react";
-import { IUsersResponse } from "../../interfaces/users/allusers/IUsers";
 import { NavigationContext } from "@react-navigation/native";
 import { currentGuestUserContext } from "../../context/CurrentGuestUserContetxt";
 import { IGuestUser } from "../../interfaces/users/guestuser/IGuestUser";
+import { IContactProps } from "../../interfaces/users/allusers/IContactProps";
 
-const Contact = (user: IUsersResponse) => {
+const Contact = ({ id, name, lastname }: IContactProps) => {
   const avatarDefault: ImageProps = require("../../assets/images/avatarPredefinido.png");
   const navigation = React.useContext(NavigationContext);
   const { setGuestUser } = React.useContext(currentGuestUserContext);
@@ -25,10 +25,7 @@ const Contact = (user: IUsersResponse) => {
     navigation?.navigate("Chat");
   };
   return (
-    <Pressable
-      key={user._id.toString()}
-      onPress={() => navigateChat(user._id, user.name)}
-    >
+    <Pressable key={id} onPress={() => navigateChat(id, name)}>
       <View style={styles.contactContainer}>
         <View style={styles.contactSubContainer}>
           <View style={styles.avatarContainer}>
@@ -36,7 +33,7 @@ const Contact = (user: IUsersResponse) => {
           </View>
           <View style={styles.textContainer}>
             <Text style={styles.textStyle}>
-              {user.name} {user.lastName}
+              {name} {lastname}
             </Text>
           </View>
         </View>

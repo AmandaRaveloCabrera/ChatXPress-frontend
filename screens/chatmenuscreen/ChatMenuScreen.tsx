@@ -8,8 +8,8 @@ import { currentUserContext } from "../../context/CurrentUserContext";
 import { allChatsFromUserContext } from "../../context/AllChatsContext";
 import { ChatService } from "../../services/ChatService";
 import { AsyncStore } from "../../services/AsyncStoreService";
-import { allUsersContext } from "../../context/AllUsersContext";
 import ContactsContainer from "../../components/contactscontainer/ContactsContainer";
+import { IUsersResponse } from "../../interfaces/users/allusers/IUsers";
 
 /**
  * This is the chatmenu screen.
@@ -21,19 +21,21 @@ import ContactsContainer from "../../components/contactscontainer/ContactsContai
 
 const ChatMenuScreen = () => {
   const { setChats } = React.useContext(allChatsFromUserContext);
-  const { setUsers } = React.useContext(allUsersContext);
   const { currentUser } = React.useContext(currentUserContext);
   const navigation = React.useContext(NavigationContext);
 
+  const [users, setUsers] = React.useState([] as IUsersResponse[]);
   const [isVisibleChats, setIsVisibleChats] = React.useState(true);
   const [loading, setLoading] = React.useState(false);
 
   const showContacts = () => {
     setIsVisibleChats(false);
   };
+
   const showChats = () => {
     setIsVisibleChats(true);
   };
+
   const signOut = () => {
     const fetchLogout = async () => {
       await UserService.logout();
@@ -44,6 +46,7 @@ const ChatMenuScreen = () => {
 
   React.useEffect(() => {
     setLoading(true);
+
     const retrieveChats = async () => {
       try {
         const token = await AsyncStore.getToken();
@@ -132,7 +135,7 @@ const ChatMenuScreen = () => {
         ) : isVisibleChats ? (
           <ChatsContainer setVisibleChats={setIsVisibleChats} />
         ) : (
-          <ContactsContainer />
+          <ContactsContainer allUsers={users} />
         )}
       </View>
     </View>

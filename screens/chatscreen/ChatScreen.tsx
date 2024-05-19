@@ -23,19 +23,21 @@ import {
 import { IMessageResponse } from "../../interfaces/messages/IMessagesResonse";
 const ChatScreen = () => {
   const background: ImageBackgroundProps = require("../../assets/images/fondo.jpg");
+
+  const { currentUser } = React.useContext(currentUserContext);
+  const { guestUser } = React.useContext(currentGuestUserContext);
+
+  const [room, setRoom] = React.useState(
+    `${currentUser.id}--with--${guestUser.id}`
+  );
   const [loading, setLoading] = React.useState(false);
   const [currentChat, setCurrentChat] = React.useState<ICurrentChatResponse>({
     idChat: "",
     name: "",
     messages: [],
   });
-  const { currentUser } = React.useContext(currentUserContext);
-  const { guestUser } = React.useContext(currentGuestUserContext);
-  const [room, setRoom] = React.useState(
-    `${currentUser.id}--with--${guestUser.id}`
-  );
 
-  const setearChat = (msg: IMessageResponse) => {
+  const updateCurrentChat = (msg: IMessageResponse) => {
     setCurrentChat((oldState: ICurrentChatResponse) => {
       let newState = oldState;
       newState.messages.push(msg);
@@ -84,7 +86,7 @@ const ChatScreen = () => {
     subcribeToChat((err, msg) => {
       if (err) return;
       console.log("Mensaje recibido: " + msg.content);
-      setearChat(msg);
+      updateCurrentChat(msg);
     });
 
     return () => {

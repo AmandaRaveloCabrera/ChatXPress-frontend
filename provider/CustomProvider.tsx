@@ -9,13 +9,7 @@ import { allChatsFromUserContext } from "../context/AllChatsContext";
 import { IGuestUser } from "../interfaces/users/guestuser/IGuestUser";
 import { ICurrentGuestUserContext } from "../interfaces/users/guestuser/ICurrentGuestUserContext";
 import { currentGuestUserContext } from "../context/CurrentGuestUserContetxt";
-import { IAllUsersContext } from "../interfaces/users/allusers/IAllUsersContext";
-import { allUsersContext } from "../context/AllUsersContext";
-import { IUsersResponse } from "../interfaces/users/allusers/IUsers";
-
-type CustomProviderProps = {
-  children: JSX.Element | JSX.Element[];
-};
+import { CustomProviderProps } from "../interfaces/provider/CustomProviderProps";
 
 const CustomProvider = ({ children }: CustomProviderProps) => {
   const [currentUser, setCurrentUser] = React.useState<IUserLoginResponse>(
@@ -26,10 +20,6 @@ const CustomProvider = ({ children }: CustomProviderProps) => {
   );
   const [guestUser, setGuestUser] = React.useState<IGuestUser>(
     {} as IGuestUser
-  );
-
-  const [allUsers, setAllUsers] = React.useState<IUsersResponse[]>(
-    [] as IUsersResponse[]
   );
 
   const currentUserData: ICurrentUserContext = {
@@ -44,19 +34,13 @@ const CustomProvider = ({ children }: CustomProviderProps) => {
     guestUser: guestUser,
     setGuestUser: setGuestUser,
   };
-  const allUsersData: IAllUsersContext = {
-    users: allUsers,
-    setUsers: setAllUsers,
-  };
 
   return (
     <currentUserContext.Provider value={currentUserData}>
       <allChatsFromUserContext.Provider value={chatsData}>
-        <allUsersContext.Provider value={allUsersData}>
-          <currentGuestUserContext.Provider value={guestUserData}>
-            {children}
-          </currentGuestUserContext.Provider>
-        </allUsersContext.Provider>
+        <currentGuestUserContext.Provider value={guestUserData}>
+          {children}
+        </currentGuestUserContext.Provider>
       </allChatsFromUserContext.Provider>
     </currentUserContext.Provider>
   );

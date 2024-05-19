@@ -1,23 +1,17 @@
 import { ScrollView, StyleSheet } from "react-native";
 import React from "react";
-import { allUsersContext } from "../../context/AllUsersContext";
 import { IUsersResponse } from "../../interfaces/users/allusers/IUsers";
 import Contact from "../contact/Contact";
+import { IContactContainerProps } from "../../interfaces/users/allusers/IContactContainer.Props";
 
-const ContactsContainer = () => {
-  const { users } = React.useContext(allUsersContext);
+const ContactsContainer = ({ allUsers }: IContactContainerProps) => {
   return (
     <ScrollView style={styles.ScrollContainer}>
-      {users.map((user: IUsersResponse) => (
+      {allUsers.map((user: IUsersResponse) => (
         <Contact
-          _id={user._id}
-          name={user.name}
-          lastName={user.lastName}
-          email={user.email}
-          department={user.department}
-          isActive={user.isActive}
-          password={user.password}
-          idRole={user.idRole}
+          id={user._id.toString()}
+          name={user.name.toString()}
+          lastname={user.lastName.toString()}
           key={user._id.toString()}
         />
       ))}
