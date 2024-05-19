@@ -88,16 +88,18 @@ const ChatScreen = () => {
   React.useEffect(() => {
     if (room) SocketService.initiateScoket(room);
 
-    SocketService.subcribeToChat((err, msg) => {
-      if (err) return;
-      console.log("Mensaje recibido: " + msg.content);
-      updateCurrentChat(msg);
-    });
-
     return () => {
       SocketService.disconnectSocket();
     };
   }, [room]);
+  React.useEffect(() => {
+    SocketService.subcribeToChat((err, msg) => {
+      if (err) return;
+      console.log("Mensaje recibido: " + msg.content);
+
+      updateCurrentChat(msg);
+    });
+  }, []);
 
   return (
     <ImageBackground
@@ -116,6 +118,7 @@ const ChatScreen = () => {
         )}
 
         <InputMessage
+          setCurrentChat={setCurrentChat}
           idChat={currentChat.idChat}
           room={room}
           setRoom={setRoom}
