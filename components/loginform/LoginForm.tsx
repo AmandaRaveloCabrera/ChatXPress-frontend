@@ -74,10 +74,8 @@ const LoginForm = () => {
         />
       </View>
       <View style={styles.buttonsContainer}>
-        <Pressable style={styles.buttonStyle}>
-          <Text style={styles.textStyle} onPress={fetchLoginUser}>
-            Send
-          </Text>
+        <Pressable style={styles.buttonStyle} onPress={fetchLoginUser}>
+          <Text style={styles.textStyle}>Send</Text>
         </Pressable>
         <Pressable style={styles.buttonStyle} onPress={returnWelcomeScreen}>
           <Text style={styles.textStyle}>Return</Text>
