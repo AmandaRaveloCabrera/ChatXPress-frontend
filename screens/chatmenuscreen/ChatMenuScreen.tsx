@@ -38,8 +38,12 @@ const ChatMenuScreen = () => {
 
   const signOut = () => {
     const fetchLogout = async () => {
-      await UserService.logout();
-      navigation?.navigate("Home");
+      const response = await UserService.logout(currentUser.email.toString());
+      if (response) {
+        navigation?.navigate("Home");
+      } else {
+        alert("Cannot log out correctly");
+      }
     };
     fetchLogout();
   };

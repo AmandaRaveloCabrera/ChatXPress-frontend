@@ -37,7 +37,7 @@ const LoginForm = () => {
 
         navigation?.navigate("Main Page");
       } else {
-        alert("Usuario incorrecto. Intentelo otra vez!");
+        alert("Incorrect user. Please try again!");
       }
     };
 

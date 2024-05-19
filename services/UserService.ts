@@ -7,6 +7,7 @@ import { getInitRequest, postInitRequest } from "./RequestService";
 
 const LOGIN_PATH = URL_API + "/user/login";
 const ALL_USERS_PATH = URL_API + "/users";
+const LOGOUT_PATH = URL_API + "/user/logout";
 
 const login = async (
   user: IUserLoginRequest
@@ -21,8 +22,17 @@ const login = async (
   return null;
 };
 
-const logout = async () => {
-  await AsyncStore.removeData();
+const logout = async (email: string) => {
+  const body = {
+    email: email,
+  };
+  const request: RequestInfo = `${LOGOUT_PATH}`;
+  const response: Response = await fetch(request, postInitRequest(body));
+  if (response.status === 200) {
+    await AsyncStore.removeData();
+    return true;
+  }
+  return false;
 };
 
 const getContacts = async (token: string) => {
