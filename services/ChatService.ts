@@ -59,7 +59,7 @@ const updateCurrentChat = async (
         putInitRequest(bodyChat, token)
       );
       if (responseChat.status === 200) {
-        return true;
+        return jsonReponseMessage;
       }
     }
   }

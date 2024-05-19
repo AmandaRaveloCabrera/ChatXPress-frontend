@@ -7,10 +7,13 @@ import { currentUserContext } from "../../context/CurrentUserContext";
 import { AsyncStore } from "../../services/AsyncStoreService";
 import { allChatsFromUserContext } from "../../context/AllChatsContext";
 import { IInputChatProp } from "../../interfaces/messages/IInputChatProp";
+import { sendMessage } from "../../services/socketService";
+import { currentGuestUserContext } from "../../context/CurrentGuestUserContetxt";
 
-const InputMessage = ({ idChat }: IInputChatProp) => {
+const InputMessage = ({ idChat, room, setRoom }: IInputChatProp) => {
   const [content, setContent] = React.useState("");
   const { currentUser } = React.useContext(currentUserContext);
+  const { guestUser } = React.useContext(currentGuestUserContext);
   const { setChats } = React.useContext(allChatsFromUserContext);
 
   const fetchAddMessage = () => {
@@ -31,6 +34,8 @@ const InputMessage = ({ idChat }: IInputChatProp) => {
             currentUser.id.toString(),
             token
           );
+          sendMessage(room, data);
+          setRoom(`${currentUser.id}--with--${guestUser.id}`);
           if (chats) {
             setChats(chats);
           }

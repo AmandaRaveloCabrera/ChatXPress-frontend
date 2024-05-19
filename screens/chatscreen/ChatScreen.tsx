@@ -15,6 +15,12 @@ import { currentUserContext } from "../../context/CurrentUserContext";
 import { currentGuestUserContext } from "../../context/CurrentGuestUserContetxt";
 import { AsyncStore } from "../../services/AsyncStoreService";
 import { ICurrentChatResponse } from "../../interfaces/chats/ICurrentChatResponse";
+import {
+  disconnectSocket,
+  initiateScoket,
+  subcribeToChat,
+} from "../../services/socketService";
+import { IMessageResponse } from "../../interfaces/messages/IMessagesResonse";
 const ChatScreen = () => {
   const background: ImageBackgroundProps = require("../../assets/images/fondo.jpg");
   const [loading, setLoading] = React.useState(false);
@@ -25,6 +31,17 @@ const ChatScreen = () => {
   });
   const { currentUser } = React.useContext(currentUserContext);
   const { guestUser } = React.useContext(currentGuestUserContext);
+  const [room, setRoom] = React.useState(
+    `${currentUser.id}--with--${guestUser.id}`
+  );
+
+  const setearChat = (msg: IMessageResponse) => {
+    setCurrentChat((oldState: ICurrentChatResponse) => {
+      let newState = oldState;
+      newState.messages.push(msg);
+      return newState;
+    });
+  };
 
   React.useEffect(() => {
     setLoading(true);
@@ -61,6 +78,20 @@ const ChatScreen = () => {
     }, 1000);
   }, []);
 
+  React.useEffect(() => {
+    if (room) initiateScoket(room);
+
+    subcribeToChat((err, msg) => {
+      if (err) return;
+      console.log("Mensaje recibido: " + msg.content);
+      setearChat(msg);
+    });
+
+    return () => {
+      disconnectSocket();
+    };
+  }, [room]);
+
   return (
     <ImageBackground
       source={background}
@@ -77,7 +108,11 @@ const ChatScreen = () => {
           <MessagesContainer messages={currentChat.messages} />
         )}
 
-        <InputMessage idChat={currentChat.idChat} />
+        <InputMessage
+          idChat={currentChat.idChat}
+          room={room}
+          setRoom={setRoom}
+        />
       </View>
     </ImageBackground>
   );
