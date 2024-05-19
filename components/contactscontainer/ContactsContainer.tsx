@@ -4,6 +4,11 @@ import { IUsersResponse } from "../../interfaces/users/allusers/IUsers";
 import Contact from "../contact/Contact";
 import { IContactContainerProps } from "../../interfaces/users/allusers/IContactContainer.Props";
 
+/**
+ * This component displays a container of all
+ * contact components which is used in the chatmenu screen.
+ */
+
 const ContactsContainer = ({ allUsers }: IContactContainerProps) => {
   return (
     <ScrollView style={styles.ScrollContainer}>

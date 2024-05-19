@@ -11,6 +11,11 @@ import { NavigationContext } from "@react-navigation/native";
 import { currentGuestUserContext } from "../../context/CurrentGuestUserContetxt";
 import { IGuestUser } from "../../interfaces/users/guestuser/IGuestUser";
 import { IContactProps } from "../../interfaces/users/allusers/IContactProps";
+/**
+ * This component displays a contact that is used within
+ * the ContactContainer component which in turn is within
+ * the chatmenu screen.
+ */
 
 const Contact = ({ id, name, lastname }: IContactProps) => {
   const avatarDefault: ImageProps = require("../../assets/images/avatarPredefinido.png");

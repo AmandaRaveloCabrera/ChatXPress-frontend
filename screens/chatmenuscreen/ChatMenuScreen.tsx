@@ -13,10 +13,12 @@ import { IUsersResponse } from "../../interfaces/users/allusers/IUsers";
 
 /**
  * This is the chatmenu screen.
- * In it, the user can see all the chats he has,
- * the new chats he has not read.
- * She / He can also create new chats and if the user logs out
- * She / He will navigate to the welcome screen.
+ * Here, the user can see all the chats he/she has,
+ * as well as all the contacts in the company.
+ * In order to go to a chat, you can go through
+ * the chats already written or through the contacts.
+ * If the user wants to log out, pressing the corresponding icon
+ * will navigate to the welcome screen.
  */
 
 const ChatMenuScreen = () => {

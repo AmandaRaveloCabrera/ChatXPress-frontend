@@ -13,6 +13,12 @@ import { IGuestUser } from "../../interfaces/users/guestuser/IGuestUser";
 import { IChatsResponse } from "../../interfaces/chats/IChatsResponse";
 import TimeFormatter from "../../utils/TimeFormatter";
 
+/**
+ * This component displays a chat that is used within
+ * the ChatContainer component which in turn is within
+ * the chatmenu screen.
+ */
+
 const Chat = (chat: IChatsResponse) => {
   const navigation = React.useContext(NavigationContext);
   const { setGuestUser } = React.useContext(currentGuestUserContext);

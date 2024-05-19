@@ -7,8 +7,12 @@ import { currentUserContext } from "../../context/CurrentUserContext";
 import { AsyncStore } from "../../services/AsyncStoreService";
 import { allChatsFromUserContext } from "../../context/AllChatsContext";
 import { IInputChatProp } from "../../interfaces/messages/IInputChatProp";
-import { sendMessage } from "../../services/socketService";
+import SocketService from "../../services/socketService";
 import { currentGuestUserContext } from "../../context/CurrentGuestUserContetxt";
+
+/**
+ * This component is the input where messages are sent within the chat screen.
+ */
 
 const InputMessage = ({ idChat, room, setRoom }: IInputChatProp) => {
   const [content, setContent] = React.useState("");
@@ -34,7 +38,7 @@ const InputMessage = ({ idChat, room, setRoom }: IInputChatProp) => {
             currentUser.id.toString(),
             token
           );
-          sendMessage(room, data);
+          SocketService.sendMessage(room, data);
           setRoom(`${currentUser.id}--with--${guestUser.id}`);
           if (chats) {
             setChats(chats);

@@ -6,8 +6,8 @@ import { Entypo } from "@expo/vector-icons";
 import Chat from "../chat/Chat";
 
 /**
- * The ChatsContainer component is responsible for displaying chats
- * in the chatmenu screen.
+ * This component displays a container of all
+ * chat components which is used in the chatmenu screen.
  */
 interface chatContainerProp {
   setVisibleChats: Function;

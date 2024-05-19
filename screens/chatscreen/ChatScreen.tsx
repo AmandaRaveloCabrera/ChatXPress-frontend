@@ -15,12 +15,17 @@ import { currentUserContext } from "../../context/CurrentUserContext";
 import { currentGuestUserContext } from "../../context/CurrentGuestUserContetxt";
 import { AsyncStore } from "../../services/AsyncStoreService";
 import { ICurrentChatResponse } from "../../interfaces/chats/ICurrentChatResponse";
-import {
-  disconnectSocket,
-  initiateScoket,
-  subcribeToChat,
-} from "../../services/socketService";
+import SocketService from "../../services/socketService";
 import { IMessageResponse } from "../../interfaces/messages/IMessagesResonse";
+
+/**
+ * This is the chat screen.
+ * In it, the user can see all the messages already written
+ * as well as the name of the user he/she is chatting with.
+ * You can send messages via an input at the bottom.
+ * There is an icon at the top to navigate back to the chatmenu screen.
+ */
+
 const ChatScreen = () => {
   const background: ImageBackgroundProps = require("../../assets/images/fondo.jpg");
 
@@ -81,16 +86,16 @@ const ChatScreen = () => {
   }, []);
 
   React.useEffect(() => {
-    if (room) initiateScoket(room);
+    if (room) SocketService.initiateScoket(room);
 
-    subcribeToChat((err, msg) => {
+    SocketService.subcribeToChat((err, msg) => {
       if (err) return;
       console.log("Mensaje recibido: " + msg.content);
       updateCurrentChat(msg);
     });
 
     return () => {
-      disconnectSocket();
+      SocketService.disconnectSocket();
     };
   }, [room]);
 

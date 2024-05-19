@@ -11,6 +11,11 @@ import { AntDesign } from "@expo/vector-icons";
 import { NavigationContext } from "@react-navigation/native";
 import { IHeaderChatProp } from "../../interfaces/messages/IHeaderChatProp";
 
+/**
+ * This component displays a header with information about
+ * the chat used in the chat screen.
+ */
+
 const HeaderChat = ({ nameGuestUser }: IHeaderChatProp) => {
   const imageAvatar: ImageProps = require("../../assets/images/avatarPredefinido.png");
   const navigation = React.useContext(NavigationContext);

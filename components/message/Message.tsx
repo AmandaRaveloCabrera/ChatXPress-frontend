@@ -4,6 +4,12 @@ import { IMessageProp } from "../../interfaces/messages/IMessageProp";
 import { currentUserContext } from "../../context/CurrentUserContext";
 import TimeFormatter from "../../utils/TimeFormatter";
 
+/**
+ * This component displays a message that is used within
+ * the MessageContainer component which in turn is within
+ * the chat screen.
+ */
+
 const Message = (message: IMessageProp) => {
   const { currentUser } = React.useContext(currentUserContext);
   return (
