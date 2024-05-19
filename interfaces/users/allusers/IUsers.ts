@@ -3,12 +3,12 @@
  */
 
 export interface IUsersResponse {
-  _id: String;
-  name: String;
-  lastName: String;
-  email: String;
-  department: String;
+  _id: string;
+  name: string;
+  lastname: string;
+  email: string;
+  department: string;
   isActive: Boolean;
-  password: String;
-  idRole: String;
+  password: string;
+  idRole: string;
 }

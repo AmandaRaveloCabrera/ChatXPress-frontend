@@ -12,12 +12,12 @@ import { IContactContainerProps } from "../../interfaces/users/allusers/IContact
 const ContactsContainer = ({ allUsers }: IContactContainerProps) => {
   return (
     <ScrollView style={styles.ScrollContainer}>
-      {allUsers.map((user: IUsersResponse) => (
+      {allUsers.map((user: IUsersResponse, index) => (
         <Contact
-          id={user._id.toString()}
-          name={user.name.toString()}
-          lastname={user.lastName.toString()}
-          key={user._id.toString()}
+          id={user._id}
+          name={user.name}
+          lastname={user.lastname}
+          key={index}
         />
       ))}
     </ScrollView>
