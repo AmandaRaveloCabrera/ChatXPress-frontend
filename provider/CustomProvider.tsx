@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ICurrentUserContext } from "../interfaces/users/currentuser/ICurrentUserContext";
+import { ICurrentUserContext } from "../interfaces/users/userlogin/ICurrentUserContext";
 import { currentUserContext } from "../context/CurrentUserContext";
 import { IUserLoginResponse } from "../interfaces/users/userlogin/IUserLoginResponse";
 import { IChatsResponse } from "../interfaces/chats/IChatsResponse";
@@ -11,7 +11,17 @@ import { ICurrentGuestUserContext } from "../interfaces/users/guestuser/ICurrent
 import { currentGuestUserContext } from "../context/CurrentGuestUserContetxt";
 import { CustomProviderProps } from "../interfaces/provider/CustomProviderProps";
 
+/**
+ * This provider component is created to use all the contexts
+ * created here within the application.
+ * @param children -> All child components.
+ * @returns The context layer surrounding the application.
+ */
+
 const CustomProvider = ({ children }: CustomProviderProps) => {
+  /**
+   * Here are all the useState that we will need in our contexts.
+   */
   const [currentUser, setCurrentUser] = React.useState<IUserLoginResponse>(
     {} as IUserLoginResponse
   );
@@ -21,6 +31,10 @@ const CustomProvider = ({ children }: CustomProviderProps) => {
   const [guestUser, setGuestUser] = React.useState<IGuestUser>(
     {} as IGuestUser
   );
+
+  /**
+   * All contexts are initialised here
+   */
 
   const currentUserData: ICurrentUserContext = {
     currentUser: currentUser,

@@ -1,3 +1,7 @@
+/**
+ * Interface to collect all user data sent by the api.
+ */
+
 export interface IUsersResponse {
   _id: String;
   name: String;
