@@ -12,7 +12,7 @@ import { AsyncStore } from "../../services/AsyncStoreService";
 
 const LoginForm = () => {
   const navigation = React.useContext(NavigationContext);
-  const { setCurrentUser, setIsActive } = React.useContext(currentUserContext);
+  const { setCurrentUser } = React.useContext(currentUserContext);
   const initialUserState = {
     name: "",
     email: "",
@@ -34,7 +34,6 @@ const LoginForm = () => {
       if (data != null) {
         setCurrentUser(data);
         await AsyncStore.storeData(data.token.toString());
-        setIsActive(true);
 
         navigation?.navigate("Main Page");
       } else {

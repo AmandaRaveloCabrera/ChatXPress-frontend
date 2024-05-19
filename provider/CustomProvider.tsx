@@ -18,7 +18,6 @@ type CustomProviderProps = {
 };
 
 const CustomProvider = ({ children }: CustomProviderProps) => {
-  const [isLogin, setIsLogin] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState<IUserLoginResponse>(
     {} as IUserLoginResponse
   );
@@ -36,8 +35,6 @@ const CustomProvider = ({ children }: CustomProviderProps) => {
   const currentUserData: ICurrentUserContext = {
     currentUser: currentUser,
     setCurrentUser: setCurrentUser,
-    isActive: isLogin,
-    setIsActive: setIsLogin,
   };
   const chatsData: IAllChatsContext = {
     chats: chats,

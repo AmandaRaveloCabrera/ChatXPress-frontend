@@ -9,13 +9,11 @@ import {
 import React from "react";
 import { AntDesign } from "@expo/vector-icons";
 import { NavigationContext } from "@react-navigation/native";
-import { currentUserContext } from "../../context/CurrentUserContext";
 import { IHeaderChatProp } from "../../interfaces/messages/IHeaderChatProp";
 
 const HeaderChat = ({ nameGuestUser }: IHeaderChatProp) => {
   const imageAvatar: ImageProps = require("../../assets/images/avatarPredefinido.png");
   const navigation = React.useContext(NavigationContext);
-  const { isActive } = React.useContext(currentUserContext);
   const navigateMenuChats = () => {
     navigation?.navigate("Main Page");
   };
@@ -26,9 +24,6 @@ const HeaderChat = ({ nameGuestUser }: IHeaderChatProp) => {
       </Pressable>
       <View style={styles.textContainer}>
         <Text style={styles.nameStyle}>{nameGuestUser}</Text>
-        <Text style={styles.timeStyle}>
-          {isActive ? "En linea" : "off line"}
-        </Text>
       </View>
       <Image source={imageAvatar} style={styles.avatarStyle} />
     </View>
@@ -55,8 +50,5 @@ const styles = StyleSheet.create({
   },
   nameStyle: {
     color: "white",
-  },
-  timeStyle: {
-    color: "#51A0B1",
   },
 });
