@@ -1,3 +1,10 @@
+/**
+ * This function is responsible for formatting the time
+ * of messages within the current chat.
+ * @param time -> The time we want to format.
+ * @returns The formatted time.
+ */
+
 const formatTimeInMessage = (time: string) => {
   const fullTimeSplit = time.split(" ");
   const timeSplit = fullTimeSplit[1].split(":");
@@ -5,6 +12,13 @@ const formatTimeInMessage = (time: string) => {
   const newTime = `${daySplit[0]}/${daySplit[1]} - ${timeSplit[0]}:${timeSplit[1]}`;
   return newTime;
 };
+
+/**
+ * This function is responsible for formatting the time
+ * of the last messages in all chats.
+ * @param time -> The time we want to format.
+ * @returns The formatted time.
+ */
 
 const formatTimeInChat = (time: string) => {
   const d = new Date();
@@ -17,6 +31,10 @@ const formatTimeInChat = (time: string) => {
   }
   return `${daySplit[0]}/${daySplit[1]}`;
 };
+
+/**
+ * The object to be exported with the above-mentioned functions.
+ */
 
 const TimeFormatter = {
   formatTimeInMessage,
