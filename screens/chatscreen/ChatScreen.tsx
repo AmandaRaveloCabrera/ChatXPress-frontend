@@ -17,6 +17,7 @@ import { AsyncStore } from "../../services/AsyncStoreService";
 import { ICurrentChatResponse } from "../../interfaces/chats/ICurrentChatResponse";
 import SocketService from "../../services/socketService";
 import { IMessageResponse } from "../../interfaces/messages/IMessagesResonse";
+import { ICurrentChatInfo } from "../../interfaces/chats/ICurrentChatInfo";
 
 /**
  * This is the chat screen.
@@ -33,20 +34,14 @@ const ChatScreen = () => {
   const { guestUser } = React.useContext(currentGuestUserContext);
   const room = `${currentUser.id}--with--${guestUser.id}`;
   const [loading, setLoading] = React.useState(false);
-  const [currentChat, setCurrentChat] = React.useState<ICurrentChatResponse>({
+  const [currentChat, setCurrentChat] = React.useState<ICurrentChatInfo>({
     idChat: "",
     name: "",
-    messages: [],
   });
 
   const [messages, setMessages] = React.useState([] as IMessageResponse[]);
 
   const updateCurrentChat = (msg: IMessageResponse) => {
-    setCurrentChat((oldState: ICurrentChatResponse) => {
-      let newState = oldState;
-      newState.messages = [...oldState.messages, msg];
-      return newState;
-    });
     setMessages((oldMessages) => [...oldMessages, msg]);
   };
 
@@ -65,13 +60,18 @@ const ChatScreen = () => {
         if (token) {
           const data = await ChatService.getCurrentChat(dataRequest, token);
           if (data) {
-            setCurrentChat(data);
+            setCurrentChat(() => {
+              const newData: ICurrentChatInfo = {
+                idChat: data.idChat,
+                name: data.name,
+              };
+              return newData;
+            });
             setMessages(data.messages);
           } else {
             setCurrentChat({
               idChat: "",
               name: "",
-              messages: [],
             });
           }
         }
