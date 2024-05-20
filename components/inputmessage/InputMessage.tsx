@@ -8,32 +8,15 @@ import { AsyncStore } from "../../services/AsyncStoreService";
 import { allChatsFromUserContext } from "../../context/AllChatsContext";
 import { IInputChatProp } from "../../interfaces/messages/IInputChatProp";
 import SocketService from "../../services/socketService";
-import { currentGuestUserContext } from "../../context/CurrentGuestUserContetxt";
-import { IMessageResponse } from "../../interfaces/messages/IMessagesResonse";
-import { ICurrentChatResponse } from "../../interfaces/chats/ICurrentChatResponse";
 
 /**
  * This component is the input where messages are sent within the chat screen.
  */
 
-const InputMessage = ({
-  idChat,
-  room,
-  setRoom,
-  setCurrentChat,
-}: IInputChatProp) => {
+const InputMessage = ({ idChat, room, updateCurrentChat }: IInputChatProp) => {
   const [content, setContent] = React.useState("");
   const { currentUser } = React.useContext(currentUserContext);
-  const { guestUser } = React.useContext(currentGuestUserContext);
   const { setChats } = React.useContext(allChatsFromUserContext);
-
-  const updateCurrentChat = (msg: IMessageResponse) => {
-    setCurrentChat((oldState: ICurrentChatResponse) => {
-      let newState = oldState;
-      newState.messages.push(msg);
-      return newState;
-    });
-  };
 
   const fetchAddMessage = () => {
     const fetchData = async () => {
@@ -55,7 +38,6 @@ const InputMessage = ({
           );
           SocketService.sendMessage(room, data);
           updateCurrentChat(data);
-          setRoom(`${currentUser.id}--with--${guestUser.id}`);
           if (chats) {
             setChats(chats);
           }

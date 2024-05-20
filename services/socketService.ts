@@ -46,7 +46,7 @@ const subcribeToChat = (
  */
 
 const sendMessage = (room: string, message: IMessageResponse) => {
-  console.log("Room: " + room + ", message: " + message.content);
+  console.log("chat: " + room + ", mensaje enviado: " + message.content);
   if (socket) socket.emit("emitMessage", { room, message });
 };
 

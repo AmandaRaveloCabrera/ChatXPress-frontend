@@ -31,10 +31,7 @@ const ChatScreen = () => {
 
   const { currentUser } = React.useContext(currentUserContext);
   const { guestUser } = React.useContext(currentGuestUserContext);
-
-  const [room, setRoom] = React.useState(
-    `${currentUser.id}--with--${guestUser.id}`
-  );
+  const room = `${currentUser.id}--with--${guestUser.id}`;
   const [loading, setLoading] = React.useState(false);
   const [currentChat, setCurrentChat] = React.useState<ICurrentChatResponse>({
     idChat: "",
@@ -42,12 +39,15 @@ const ChatScreen = () => {
     messages: [],
   });
 
+  const [messages, setMessages] = React.useState([] as IMessageResponse[]);
+
   const updateCurrentChat = (msg: IMessageResponse) => {
     setCurrentChat((oldState: ICurrentChatResponse) => {
       let newState = oldState;
-      newState.messages.push(msg);
+      newState.messages = [...oldState.messages, msg];
       return newState;
     });
+    setMessages((oldMessages) => [...oldMessages, msg]);
   };
 
   React.useEffect(() => {
@@ -66,6 +66,7 @@ const ChatScreen = () => {
           const data = await ChatService.getCurrentChat(dataRequest, token);
           if (data) {
             setCurrentChat(data);
+            setMessages(data.messages);
           } else {
             setCurrentChat({
               idChat: "",
@@ -92,11 +93,14 @@ const ChatScreen = () => {
       SocketService.disconnectSocket();
     };
   }, [room]);
+
   React.useEffect(() => {
     SocketService.subcribeToChat((err, msg) => {
-      if (err) return;
-      console.log("Mensaje recibido: " + msg.content);
+      if (err) {
+        return;
+      }
 
+      console.log("Mensaje recibido: " + msg.content);
       updateCurrentChat(msg);
     });
   }, []);
@@ -114,14 +118,13 @@ const ChatScreen = () => {
             <Text style={styles.styleText}>Cargando...</Text>
           </View>
         ) : (
-          <MessagesContainer messages={currentChat.messages} />
+          <MessagesContainer messages={messages} />
         )}
 
         <InputMessage
-          setCurrentChat={setCurrentChat}
+          updateCurrentChat={updateCurrentChat}
           idChat={currentChat.idChat}
           room={room}
-          setRoom={setRoom}
         />
       </View>
     </ImageBackground>
