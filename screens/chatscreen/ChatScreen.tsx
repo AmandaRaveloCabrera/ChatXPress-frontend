@@ -53,10 +53,8 @@ const ChatScreen = () => {
         time: msg.dateCreated,
         lastMessage: msg.content,
       };
-      const newData = oldState.filter(
-        (it) => it.idChats !== currentChat.idChat
-      );
-      return [...newData, chatUpdated];
+      const newData = oldState.filter((it) => it.idGuestUser !== guestUser.id);
+      return [...newData, chatUpdated].reverse();
     });
   };
 
