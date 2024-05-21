@@ -44,9 +44,12 @@ const InputMessage = ({ idChat, room, updateCurrentChat }: IInputChatProp) => {
         }
       }
     };
-
-    fetchData();
-    setContent("");
+    if (content === "") {
+      alert("A blank message cannot be sent. Please try again!");
+    } else {
+      fetchData();
+      setContent("");
+    }
   };
   return (
     <View style={styles.inputMessageContainer}>
