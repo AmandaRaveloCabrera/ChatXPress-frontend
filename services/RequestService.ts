@@ -64,6 +64,10 @@ const putInitRequest = (body: object, token: string): RequestInit => {
   };
 };
 
+/**
+ * The object to be exported with the above-mentioned functions.
+ */
+
 const RequestService = {
   getInitRequest,
   postInitRequest,

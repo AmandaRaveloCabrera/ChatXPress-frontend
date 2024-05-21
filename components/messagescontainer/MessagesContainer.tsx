@@ -1,7 +1,7 @@
 import { ScrollView, StyleSheet } from "react-native";
 import React from "react";
 import Message from "../message/Message";
-import { IContainerMessageProps } from "../../interfaces/messages/IContainerMessageProp";
+import { IContainerMessageProps } from "../../interfaces/messages/IContainerMessageProps";
 /**
  * This component displays a container of all message components
  * which is used in the chat screen

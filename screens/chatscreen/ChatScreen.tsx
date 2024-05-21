@@ -14,8 +14,7 @@ import { ICurrentChatRequest } from "../../interfaces/chats/ICurrentChatRequest"
 import { currentUserContext } from "../../context/CurrentUserContext";
 import { currentGuestUserContext } from "../../context/CurrentGuestUserContetxt";
 import { AsyncStore } from "../../services/AsyncStoreService";
-import { ICurrentChatResponse } from "../../interfaces/chats/ICurrentChatResponse";
-import SocketService from "../../services/socketService";
+import SocketService from "../../services/SocketService";
 import { IMessageResponse } from "../../interfaces/messages/IMessagesResonse";
 import { ICurrentChatInfo } from "../../interfaces/chats/ICurrentChatInfo";
 

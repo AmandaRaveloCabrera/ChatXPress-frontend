@@ -4,16 +4,14 @@ import { allChatsFromUserContext } from "../../context/AllChatsContext";
 import { IChatsResponse } from "../../interfaces/chats/IChatsResponse";
 import { Entypo } from "@expo/vector-icons";
 import Chat from "../chat/Chat";
+import { IChatContainerProps } from "../../interfaces/chats/IChatContainerProps";
 
 /**
  * This component displays a container of all
  * chat components which is used in the chatmenu screen.
  */
-interface chatContainerProp {
-  setVisibleChats: Function;
-}
 
-const ChatsContainer = ({ setVisibleChats }: chatContainerProp) => {
+const ChatsContainer = ({ setVisibleChats }: IChatContainerProps) => {
   const { chats } = React.useContext(allChatsFromUserContext);
 
   const goToContact = () => {

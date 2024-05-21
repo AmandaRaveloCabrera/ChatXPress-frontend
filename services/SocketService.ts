@@ -51,6 +51,10 @@ const sendMessage = (room: string, message: IMessageResponse) => {
   if (socket) socket.emit("emitMessage", { room, message });
 };
 
+/**
+ * The object to be exported with the above-mentioned functions.
+ */
+
 const SocketService = {
   initiateScoket,
   disconnectSocket,

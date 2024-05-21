@@ -6,14 +6,14 @@ import { IMessageRequest } from "../../interfaces/messages/IMessageRequest";
 import { currentUserContext } from "../../context/CurrentUserContext";
 import { AsyncStore } from "../../services/AsyncStoreService";
 import { allChatsFromUserContext } from "../../context/AllChatsContext";
-import { IInputChatProp } from "../../interfaces/messages/IInputChatProp";
-import SocketService from "../../services/socketService";
+import { IInputChatProps } from "../../interfaces/messages/IInputChatProps";
+import SocketService from "../../services/SocketService";
 
 /**
  * This component is the input where messages are sent within the chat screen.
  */
 
-const InputMessage = ({ idChat, room, updateCurrentChat }: IInputChatProp) => {
+const InputMessage = ({ idChat, room, updateCurrentChat }: IInputChatProps) => {
   const [content, setContent] = React.useState("");
   const { currentUser } = React.useContext(currentUserContext);
   const { setChats } = React.useContext(allChatsFromUserContext);

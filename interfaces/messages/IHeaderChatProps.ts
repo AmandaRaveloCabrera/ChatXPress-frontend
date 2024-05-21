@@ -2,6 +2,6 @@
  * Interface used in the HeaderChat component.
  */
 
-export interface IHeaderChatProp {
+export interface IHeaderChatProps {
   nameGuestUser: string;
 }

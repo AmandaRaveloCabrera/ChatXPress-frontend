@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { IMessageProp } from "../../interfaces/messages/IMessageProp";
+import { IMessageProps } from "../../interfaces/messages/IMessageProps";
 import { currentUserContext } from "../../context/CurrentUserContext";
 import TimeFormatter from "../../utils/TimeFormatter";
 
@@ -10,7 +10,7 @@ import TimeFormatter from "../../utils/TimeFormatter";
  * the chat screen.
  */
 
-const Message = (message: IMessageProp) => {
+const Message = (message: IMessageProps) => {
   const { currentUser } = React.useContext(currentUserContext);
   return (
     <View

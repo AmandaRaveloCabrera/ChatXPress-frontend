@@ -1,5 +1,5 @@
 /**
- * the url of the api to which we connect to
+ * the url of the server to which we connect to
  */
 const IP = "192.168.1.133";
 const URL_API = `http://${IP}:3000/api/v1`;
