@@ -17,6 +17,8 @@ import { AsyncStore } from "../../services/AsyncStoreService";
 import SocketService from "../../services/SocketService";
 import { IMessageResponse } from "../../interfaces/messages/IMessagesResonse";
 import { ICurrentChatInfo } from "../../interfaces/chats/ICurrentChatInfo";
+import { allChatsFromUserContext } from "../../context/AllChatsContext";
+import { IChatsResponse } from "../../interfaces/chats/IChatsResponse";
 
 /**
  * This is the chat screen.
@@ -31,6 +33,7 @@ const ChatScreen = () => {
 
   const { currentUser } = React.useContext(currentUserContext);
   const { guestUser } = React.useContext(currentGuestUserContext);
+  const { setChats } = React.useContext(allChatsFromUserContext);
   const room = `${currentUser.id}--with--${guestUser.id}`;
   const [loading, setLoading] = React.useState(false);
   const [currentChat, setCurrentChat] = React.useState<ICurrentChatInfo>({
@@ -42,6 +45,19 @@ const ChatScreen = () => {
 
   const updateCurrentChat = (msg: IMessageResponse) => {
     setMessages((oldMessages) => [...oldMessages, msg]);
+    setChats((oldState: IChatsResponse[]) => {
+      const chatUpdated: IChatsResponse = {
+        idChats: currentChat.idChat,
+        idGuestUser: guestUser.id,
+        nameGuestUser: guestUser.name,
+        time: msg.dateCreated,
+        lastMessage: msg.content,
+      };
+      const newData = oldState.filter(
+        (it) => it.idChats !== currentChat.idChat
+      );
+      return [...newData, chatUpdated];
+    });
   };
 
   React.useEffect(() => {
