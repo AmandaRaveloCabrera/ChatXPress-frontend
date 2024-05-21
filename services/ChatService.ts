@@ -1,24 +1,20 @@
-import URL_API from "../data/UrlApi";
+import Config from "../data/Config";
 import { IBodyChatRequest } from "../interfaces/chats/IBodyChatRequest";
 import { IChatsResponse } from "../interfaces/chats/IChatsResponse";
 import { ICurrentChatRequest } from "../interfaces/chats/ICurrentChatRequest";
 import { ICurrentChatResponse } from "../interfaces/chats/ICurrentChatResponse";
 import { IMessageRequest } from "../interfaces/messages/IMessageRequest";
 import { IMessageResponse } from "../interfaces/messages/IMessagesResonse";
-import {
-  getInitRequest,
-  postInitRequest,
-  putInitRequest,
-} from "./RequestService";
+import RequestService from "./RequestService";
 
 /**
  * All the urls of the endpoints that we will be calling.
  */
 
-const GET_CHATS_BY_ID_USER = URL_API + "/chats/";
-const GET_CURRENT_CHAT = URL_API + "/chat";
-const POST_MESSAGE = URL_API + "/message";
-const UPDATE_CHAT = URL_API + "/chat/";
+const GET_CHATS_BY_ID_USER = Config.URL_API + "/chats/";
+const GET_CURRENT_CHAT = Config.URL_API + "/chat";
+const POST_MESSAGE = Config.URL_API + "/message";
+const UPDATE_CHAT = Config.URL_API + "/chat/";
 
 /**
  * This function calls the api to get all the chats of a given user.
@@ -31,7 +27,10 @@ const UPDATE_CHAT = URL_API + "/chat/";
 
 const getChatsByIdUser = async (id: string, token: string) => {
   const request: RequestInfo = `${GET_CHATS_BY_ID_USER}${id}`;
-  const response: Response = await fetch(request, getInitRequest(token));
+  const response: Response = await fetch(
+    request,
+    RequestService.getInitRequest(token)
+  );
 
   if (response.status == 200) {
     const jsonResponse: IChatsResponse[] = await response.json();
@@ -51,7 +50,10 @@ const getChatsByIdUser = async (id: string, token: string) => {
 
 const getCurrentChat = async (body: ICurrentChatRequest, token: string) => {
   const request: RequestInfo = `${GET_CURRENT_CHAT}`;
-  const response: Response = await fetch(request, postInitRequest(body, token));
+  const response: Response = await fetch(
+    request,
+    RequestService.postInitRequest(body, token)
+  );
   if (response.status == 200) {
     const jsonReponse: ICurrentChatResponse = await response.json();
     return jsonReponse;
@@ -79,7 +81,7 @@ const updateCurrentChat = async (
   const requestChat: RequestInfo = `${UPDATE_CHAT}${id}`;
   const responseMessage: Response = await fetch(
     requestMessage,
-    postInitRequest(body, token)
+    RequestService.postInitRequest(body, token)
   );
 
   if (responseMessage.status === 200) {
@@ -90,7 +92,7 @@ const updateCurrentChat = async (
       };
       const responseChat: Response = await fetch(
         requestChat,
-        putInitRequest(bodyChat, token)
+        RequestService.putInitRequest(bodyChat, token)
       );
       if (responseChat.status === 200) {
         return jsonReponseMessage;

@@ -1,5 +1,6 @@
 import io, { Socket } from "socket.io-client";
 import { IMessageResponse } from "../interfaces/messages/IMessagesResonse";
+import Config from "../data/Config";
 
 let socket: Socket;
 
@@ -10,7 +11,7 @@ let socket: Socket;
  */
 
 const initiateScoket = (room: string) => {
-  socket = io("http://192.168.0.23:3001");
+  socket = io(Config.URL_SOCKET);
   console.log("Connecting socket ....");
   if (socket) socket.emit("join", room);
 };

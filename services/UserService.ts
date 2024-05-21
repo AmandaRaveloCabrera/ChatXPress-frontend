@@ -1,17 +1,17 @@
-import URL_API from "../data/UrlApi";
+import Config from "../data/Config";
 import { IUserLoginRequest } from "../interfaces/users/userlogin/IUserLoginRequest";
 import { IUserLoginResponse } from "../interfaces/users/userlogin/IUserLoginResponse";
 import { IUsersResponse } from "../interfaces/users/allusers/IUsers";
 import { AsyncStore } from "./AsyncStoreService";
-import { getInitRequest, postInitRequest } from "./RequestService";
+import RequestService from "./RequestService";
 
 /**
  * All the urls of the endpoints that we will be calling.
  */
 
-const LOGIN_PATH = URL_API + "/user/login";
-const ALL_USERS_PATH = URL_API + "/users";
-const LOGOUT_PATH = URL_API + "/user/logout";
+const LOGIN_PATH = Config.URL_API + "/user/login";
+const ALL_USERS_PATH = Config.URL_API + "/users";
+const LOGOUT_PATH = Config.URL_API + "/user/logout";
 
 /**
  * This function will make a call to the api in order to log the user in,
@@ -25,7 +25,10 @@ const login = async (
   user: IUserLoginRequest
 ): Promise<IUserLoginResponse | null> => {
   const request: RequestInfo = `${LOGIN_PATH}`;
-  const response: Response = await fetch(request, postInitRequest(user));
+  const response: Response = await fetch(
+    request,
+    RequestService.postInitRequest(user)
+  );
 
   if (response.status === 200) {
     const jsonResponse: IUserLoginResponse = await response.json();
@@ -48,7 +51,10 @@ const logout = async (email: string, token: string) => {
     email: email,
   };
   const request: RequestInfo = `${LOGOUT_PATH}`;
-  const response: Response = await fetch(request, postInitRequest(body, token));
+  const response: Response = await fetch(
+    request,
+    RequestService.postInitRequest(body, token)
+  );
   if (response.status === 200) {
     await AsyncStore.removeData();
     return true;
@@ -65,7 +71,10 @@ const logout = async (email: string, token: string) => {
 
 const getContacts = async (token: string) => {
   const request: RequestInfo = `${ALL_USERS_PATH}`;
-  const response: Response = await fetch(request, getInitRequest(token));
+  const response: Response = await fetch(
+    request,
+    RequestService.getInitRequest(token)
+  );
   if (response.status === 200) {
     const jsonResponse: IUsersResponse[] = await response.json();
     return jsonResponse;

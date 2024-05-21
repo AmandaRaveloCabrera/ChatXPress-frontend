@@ -3,7 +3,7 @@
  * @param token -> Token needed to make requests.
  * @returns an init request
  */
-export const getInitRequest = (token: string): RequestInit => {
+const getInitRequest = (token: string): RequestInit => {
   return {
     method: "GET",
     headers: {
@@ -21,7 +21,7 @@ export const getInitRequest = (token: string): RequestInit => {
  * @returns An init request
  */
 
-export const postInitRequest = (body: object, token?: string): RequestInit => {
+const postInitRequest = (body: object, token?: string): RequestInit => {
   if (token) {
     return {
       credentials: "include",
@@ -52,7 +52,7 @@ export const postInitRequest = (body: object, token?: string): RequestInit => {
  * @returns An init request
  */
 
-export const putInitRequest = (body: object, token: string): RequestInit => {
+const putInitRequest = (body: object, token: string): RequestInit => {
   return {
     method: "PUT",
     headers: {
@@ -63,3 +63,11 @@ export const putInitRequest = (body: object, token: string): RequestInit => {
     body: JSON.stringify(body),
   };
 };
+
+const RequestService = {
+  getInitRequest,
+  postInitRequest,
+  putInitRequest,
+};
+
+export default RequestService;
