@@ -1,4 +1,4 @@
-import Config from "../data/Config";
+import Config from "../config/Config";
 import { IUserLoginRequest } from "../interfaces/users/userlogin/IUserLoginRequest";
 import { IUserLoginResponse } from "../interfaces/users/userlogin/IUserLoginResponse";
 import { IUsersResponse } from "../interfaces/users/allusers/IUsers";

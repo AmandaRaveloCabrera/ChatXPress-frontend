@@ -1,6 +1,6 @@
 import io, { Socket } from "socket.io-client";
 import { IMessageResponse } from "../interfaces/messages/IMessagesResonse";
-import Config from "../data/Config";
+import Config from "../config/Config";
 
 let socket: Socket;
 

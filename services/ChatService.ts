@@ -1,4 +1,4 @@
-import Config from "../data/Config";
+import Config from "../config/Config";
 import { IBodyChatRequest } from "../interfaces/chats/IBodyChatRequest";
 import { IChatsResponse } from "../interfaces/chats/IChatsResponse";
 import { ICurrentChatRequest } from "../interfaces/chats/ICurrentChatRequest";
