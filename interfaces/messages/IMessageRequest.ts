@@ -3,6 +3,6 @@
  */
 
 export interface IMessageRequest {
-  idUser: String;
-  content: String;
+  idUser: string;
+  content: string;
 }

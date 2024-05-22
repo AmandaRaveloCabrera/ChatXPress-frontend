@@ -3,8 +3,8 @@
  */
 
 export interface IUserLoginResponse {
-  id: String;
-  username: String;
-  email: String;
-  token: String;
+  id: string;
+  username: string;
+  email: string;
+  token: string;
 }
