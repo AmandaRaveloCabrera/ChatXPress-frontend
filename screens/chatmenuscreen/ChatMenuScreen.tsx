@@ -42,10 +42,7 @@ const ChatMenuScreen = () => {
     const fetchLogout = async () => {
       const token = await AsyncStore.getToken();
       if (token) {
-        const response = await UserService.logout(
-          currentUser.email.toString(),
-          token
-        );
+        const response = await UserService.logout(currentUser.email, token);
         if (response) {
           navigation?.navigate("Home");
         } else {
@@ -64,7 +61,7 @@ const ChatMenuScreen = () => {
         const token = await AsyncStore.getToken();
         if (token) {
           const data = await ChatService.getChatsByIdUser(
-            currentUser.id.toString(),
+            currentUser.id,
             token
           );
           if (data) {

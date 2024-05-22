@@ -33,7 +33,7 @@ const InputMessage = ({ idChat, room, updateCurrentChat }: IInputChatProps) => {
         );
         if (data) {
           const chats = await ChatService.getChatsByIdUser(
-            currentUser.id.toString(),
+            currentUser.id,
             token
           );
           SocketService.sendMessage(room, data);

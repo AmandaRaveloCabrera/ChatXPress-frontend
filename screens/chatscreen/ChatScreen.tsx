@@ -64,7 +64,7 @@ const ChatScreen = () => {
     const retrieveCurrentChat = async () => {
       try {
         const dataRequest: ICurrentChatRequest = {
-          idUser: currentUser.id.toString(),
+          idUser: currentUser.id,
           idGuestUser: guestUser.id,
           name: guestUser.name,
         };
@@ -125,7 +125,7 @@ const ChatScreen = () => {
       style={styles.backgroundContainer}
     >
       <View style={styles.mainContainer}>
-        <HeaderChat nameGuestUser={currentChat.name.toString()} />
+        <HeaderChat nameGuestUser={currentChat.name} />
         {loading ? (
           <View>
             <Text style={styles.styleText}>Cargando...</Text>

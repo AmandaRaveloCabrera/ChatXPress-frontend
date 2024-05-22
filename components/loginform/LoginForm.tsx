@@ -33,7 +33,7 @@ const LoginForm = () => {
 
       if (data != null) {
         setCurrentUser(data);
-        await AsyncStore.storeData(data.token.toString());
+        await AsyncStore.storeData(data.token);
 
         navigation?.navigate("Main Page");
       } else {

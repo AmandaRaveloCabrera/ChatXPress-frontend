@@ -23,10 +23,10 @@ const Chat = (chat: IChatsResponse) => {
   const navigation = React.useContext(NavigationContext);
   const { setGuestUser } = React.useContext(currentGuestUserContext);
   const avatarDefault: ImageProps = require("../../assets/images/avatarPredefinido.png");
-  const navigateChat = (id: String, name: String) => {
+  const navigateChat = (id: string, name: string) => {
     const data: IGuestUser = {
-      id: id.toString(),
-      name: name.toString(),
+      id: id,
+      name: name,
     };
     setGuestUser(data);
     navigation?.navigate("Chat");

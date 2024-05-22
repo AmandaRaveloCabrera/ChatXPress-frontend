@@ -18,7 +18,7 @@ const MessagesContainer = ({ messages }: IContainerMessageProps) => {
     >
       {messages.map((message) => (
         <Message
-          content={message.content.toString()}
+          content={message.content}
           time={message.dateCreated}
           iduser={message.idUser}
           key={message._id}
