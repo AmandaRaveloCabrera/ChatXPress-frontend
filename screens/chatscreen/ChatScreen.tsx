@@ -19,6 +19,7 @@ import { IMessageResponse } from "../../interfaces/messages/IMessagesResonse";
 import { ICurrentChatInfo } from "../../interfaces/chats/ICurrentChatInfo";
 import { allChatsFromUserContext } from "../../context/AllChatsContext";
 import { IChatsResponse } from "../../interfaces/chats/IChatsResponse";
+import Colors from "../../assets/styles/Colors";
 
 /**
  * This is the chat screen.
@@ -159,12 +160,12 @@ const styles = StyleSheet.create({
   mainContainer: {
     height: "100%",
     width: "100%",
-    backgroundColor: "#2F5D95CC",
+    backgroundColor: Colors.background,
     alignItems: "center",
     justifyContent: "space-between",
   },
   styleText: {
-    color: "white",
+    color: Colors.letterPrimary,
     fontSize: 24,
   },
 });

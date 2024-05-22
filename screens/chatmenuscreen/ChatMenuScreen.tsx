@@ -10,6 +10,7 @@ import { ChatService } from "../../services/ChatService";
 import { AsyncStore } from "../../services/AsyncStoreService";
 import ContactsContainer from "../../components/contactscontainer/ContactsContainer";
 import { IUsersResponse } from "../../interfaces/users/allusers/IUsers";
+import Colors from "../../assets/styles/Colors";
 
 /**
  * This is the chatmenu screen.
@@ -102,7 +103,7 @@ const ChatMenuScreen = () => {
       <View style={styles.headerContainer}>
         <Text style={styles.headerStyle}>Chats</Text>
         <Pressable onPress={signOut}>
-          <FontAwesome name="sign-out" size={36} color="white" />
+          <FontAwesome name="sign-out" size={36} color={Colors.letterPrimary} />
         </Pressable>
       </View>
       <View style={styles.chatsContainer}>
@@ -139,7 +140,7 @@ const ChatMenuScreen = () => {
         </View>
         {loading ? (
           <View style={styles.textLoading}>
-            <Text style={{ color: "black", fontSize: 20 }}>Cargando...</Text>
+            <Text style={styles.loadingStyle}>Cargando...</Text>
           </View>
         ) : isVisibleChats ? (
           <ChatsContainer setVisibleChats={setIsVisibleChats} />
@@ -163,11 +164,11 @@ const styles = StyleSheet.create({
   },
   titleStyle: {
     fontSize: 26,
-    color: "#32659D",
+    color: Colors.primary,
     fontWeight: "bold",
   },
   mainContainer: {
-    backgroundColor: "#32659D",
+    backgroundColor: Colors.primary,
     height: "100%",
     width: "100%",
   },
@@ -180,12 +181,12 @@ const styles = StyleSheet.create({
     paddingTop: 20,
   },
   headerStyle: {
-    color: "white",
+    color: Colors.letterPrimary,
     fontSize: 32,
     fontWeight: "bold",
   },
   chatsContainer: {
-    backgroundColor: "#D9D9D9",
+    backgroundColor: Colors.secondary,
     height: "100%",
     paddingTop: 20,
     borderTopRightRadius: 35,
@@ -199,25 +200,25 @@ const styles = StyleSheet.create({
   },
   tabBorder: {
     borderBottomWidth: 2,
-    borderBottomColor: "black",
+    borderBottomColor: Colors.letterDark,
     paddingBottom: 8,
     width: 130,
     alignItems: "center",
   },
   tabBorderSelected: {
     borderBottomWidth: 2,
-    borderBottomColor: "#51A0B1",
+    borderBottomColor: Colors.ternary,
     paddingBottom: 8,
     width: 130,
     alignItems: "center",
   },
   textSelected: {
-    color: "#51A0B1",
+    color: Colors.ternary,
     fontSize: 16,
     fontWeight: "bold",
   },
   textNotSelected: {
-    color: "black",
+    color: Colors.letterDark,
     fontSize: 16,
     fontWeight: "bold",
   },
@@ -225,5 +226,9 @@ const styles = StyleSheet.create({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+  },
+  loadingStyle: {
+    color: Colors.letterDark,
+    fontSize: 20,
   },
 });

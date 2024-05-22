@@ -10,6 +10,7 @@ import React from "react";
 import { AntDesign } from "@expo/vector-icons";
 import { NavigationContext } from "@react-navigation/native";
 import { IHeaderChatProps } from "../../interfaces/messages/IHeaderChatProps";
+import Colors from "../../assets/styles/Colors";
 
 /**
  * This component displays a header with information about
@@ -25,7 +26,7 @@ const HeaderChat = ({ nameGuestUser }: IHeaderChatProps) => {
   return (
     <View style={styles.headerContainer}>
       <Pressable onPress={navigateMenuChats}>
-        <AntDesign name="caretleft" size={40} color="#51A0B1" />
+        <AntDesign name="caretleft" size={40} color={Colors.ternary} />
       </Pressable>
       <View style={styles.textContainer}>
         <Text style={styles.nameStyle}>{nameGuestUser}</Text>
@@ -54,6 +55,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   nameStyle: {
-    color: "white",
+    color: Colors.letterPrimary,
   },
 });

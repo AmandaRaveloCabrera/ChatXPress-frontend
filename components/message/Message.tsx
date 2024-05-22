@@ -3,6 +3,7 @@ import React from "react";
 import { IMessageProps } from "../../interfaces/messages/IMessageProps";
 import { currentUserContext } from "../../context/CurrentUserContext";
 import TimeFormatter from "../../utils/TimeFormatter";
+import Colors from "../../assets/styles/Colors";
 
 /**
  * This component displays a message that is used within
@@ -55,17 +56,17 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
   },
   timeStyle: {
-    color: "white",
+    color: Colors.letterPrimary,
   },
   messageTextContainerCurrentUser: {
-    backgroundColor: "#67D6EE",
+    backgroundColor: Colors.quaternary,
     height: "60%",
     borderRadius: 20,
     justifyContent: "center",
     paddingHorizontal: 15,
   },
   messageTextContainerGuestUser: {
-    backgroundColor: "#D9D9D9",
+    backgroundColor: Colors.secondary,
     height: "60%",
     borderRadius: 20,
     justifyContent: "center",

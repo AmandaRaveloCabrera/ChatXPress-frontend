@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import React from "react";
 import { NavigationContext } from "@react-navigation/native";
+import Colors from "../../assets/styles/Colors";
 
 /**
  * This is the welcome screen.
@@ -56,12 +57,12 @@ const styles = StyleSheet.create({
   titleStyle: {
     fontSize: 36,
     fontWeight: "bold",
-    color: "white",
+    color: Colors.letterPrimary,
     paddingTop: 110,
   },
 
   textStyle: {
-    color: "#fff",
+    color: Colors.letterPrimary,
     fontSize: 30,
     fontWeight: "bold",
     paddingBottom: 40,

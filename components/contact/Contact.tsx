@@ -11,6 +11,7 @@ import { NavigationContext } from "@react-navigation/native";
 import { currentGuestUserContext } from "../../context/CurrentGuestUserContetxt";
 import { IGuestUser } from "../../interfaces/users/guestuser/IGuestUser";
 import { IContactProps } from "../../interfaces/users/allusers/IContactProps";
+import Colors from "../../assets/styles/Colors";
 /**
  * This component displays a contact that is used within
  * the ContactContainer component which in turn is within
@@ -51,7 +52,7 @@ export default Contact;
 
 const styles = StyleSheet.create({
   contactContainer: {
-    backgroundColor: "#D9D9D9",
+    backgroundColor: Colors.secondary,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "flex-start",
@@ -68,7 +69,7 @@ const styles = StyleSheet.create({
     paddingRight: 10,
   },
   textStyle: {
-    color: "black",
+    color: Colors.letterDark,
     fontSize: 16,
     fontWeight: "500",
   },

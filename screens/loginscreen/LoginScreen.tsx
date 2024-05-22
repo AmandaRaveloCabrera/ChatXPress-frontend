@@ -7,6 +7,7 @@ import {
 } from "react-native";
 import React from "react";
 import LoginForm from "../../components/loginform/LoginForm";
+import Colors from "../../assets/styles/Colors";
 
 /**
  * This is the login screen.
@@ -48,6 +49,6 @@ const styles = StyleSheet.create({
     paddingTop: 125,
     fontSize: 36,
     fontWeight: "bold",
-    color: "white",
+    color: Colors.letterPrimary,
   },
 });

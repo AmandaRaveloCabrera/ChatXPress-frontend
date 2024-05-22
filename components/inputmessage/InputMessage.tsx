@@ -8,6 +8,7 @@ import { AsyncStore } from "../../services/AsyncStoreService";
 import { allChatsFromUserContext } from "../../context/AllChatsContext";
 import { IInputChatProps } from "../../interfaces/messages/IInputChatProps";
 import SocketService from "../../services/SocketService";
+import Colors from "../../assets/styles/Colors";
 
 /**
  * This component is the input where messages are sent within the chat screen.
@@ -53,18 +54,18 @@ const InputMessage = ({ idChat, room, updateCurrentChat }: IInputChatProps) => {
   };
   return (
     <View style={styles.inputMessageContainer}>
-      <Entypo name="emoji-happy" size={32} color="#7D7C7C" />
+      <Entypo name="emoji-happy" size={32} color={Colors.inputMessage} />
       <View style={styles.inputContainer}>
         <TextInput
           placeholder="Text input"
           style={styles.inputMessageStyle}
-          placeholderTextColor={"#FFF"}
+          placeholderTextColor={Colors.letterPrimary}
           value={content}
           onChangeText={setContent}
         />
       </View>
       <Pressable onPress={fetchAddMessage}>
-        <AntDesign name="caretright" size={36} color="#51A0B1" />
+        <AntDesign name="caretright" size={36} color={Colors.ternary} />
       </Pressable>
     </View>
   );
@@ -74,7 +75,7 @@ export default InputMessage;
 
 const styles = StyleSheet.create({
   inputMessageContainer: {
-    backgroundColor: "#D9D9D9",
+    backgroundColor: Colors.secondary,
     height: "10%",
     width: "100%",
     flexDirection: "row",
@@ -84,12 +85,12 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 25,
   },
   inputContainer: {
-    backgroundColor: "#7D7C7C",
+    backgroundColor: Colors.inputMessage,
     width: "75%",
     paddingHorizontal: "5%",
     borderRadius: 20,
   },
   inputMessageStyle: {
-    color: "white",
+    color: Colors.letterPrimary,
   },
 });

@@ -12,6 +12,7 @@ import { currentGuestUserContext } from "../../context/CurrentGuestUserContetxt"
 import { IGuestUser } from "../../interfaces/users/guestuser/IGuestUser";
 import { IChatsResponse } from "../../interfaces/chats/IChatsResponse";
 import TimeFormatter from "../../utils/TimeFormatter";
+import Colors from "../../assets/styles/Colors";
 
 /**
  * This component displays a chat that is used within
@@ -58,7 +59,7 @@ export default Chat;
 
 const styles = StyleSheet.create({
   chatContainer: {
-    backgroundColor: "#D9D9D9",
+    backgroundColor: Colors.secondary,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-evenly",
@@ -75,11 +76,11 @@ const styles = StyleSheet.create({
     paddingRight: 10,
   },
   lastMessageStyle: {
-    color: "#606060",
+    color: Colors.letterSecondary,
     width: 200,
   },
   textStyle: {
-    color: "black",
+    color: Colors.letterDark,
     fontSize: 16,
     fontWeight: "500",
   },

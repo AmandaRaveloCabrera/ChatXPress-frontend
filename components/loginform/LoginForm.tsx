@@ -4,6 +4,7 @@ import { NavigationContext } from "@react-navigation/native";
 import { UserService } from "../../services/UserService";
 import { currentUserContext } from "../../context/CurrentUserContext";
 import { AsyncStore } from "../../services/AsyncStoreService";
+import Colors from "../../assets/styles/Colors";
 
 /**
  * The loginForm component is responsible for displaying
@@ -91,7 +92,7 @@ const styles = StyleSheet.create({
   formContainer: {
     height: "62%",
     width: "100%",
-    backgroundColor: "#2F5D95CC",
+    backgroundColor: Colors.background,
     alignItems: "center",
     justifyContent: "center",
     borderTopRightRadius: 50,
@@ -112,19 +113,19 @@ const styles = StyleSheet.create({
 
   inputStyle: {
     borderBottomWidth: 4,
-    borderBottomColor: "white",
+    borderBottomColor: Colors.letterPrimary,
   },
   buttonStyle: {
     height: 60,
     width: 130,
     borderWidth: 2,
-    borderColor: "white",
+    borderColor: Colors.letterPrimary,
     borderRadius: 70,
     alignItems: "center",
     justifyContent: "center",
   },
   textStyle: {
-    color: "white",
+    color: Colors.letterPrimary,
     fontSize: 18,
   },
 });
