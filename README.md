@@ -1,59 +1,59 @@
-# ChatXPress front-end aplicación movil
+# ChatXPress front-end mobile application
 
-## Descripción
+## Description
 
-Este repositorio se encuentra la parte front-end móvil de la aplicación ChatXPress.
+This repository is the mobile front-end part of the ChatXPress application.
 
-Este proyecto es una aplicación de mensajería, la cual, esta formado por tres partes: un back-end y un front-end para la aplicación móvil donde los usuarios se conectarán para mandarse mensajes unos a otros y otro front-end para la aplicación web donde se gestionarán estos usuarios por un administrador.
+This project is a messaging application, which consists of three parts: a back-end and a front-end for the mobile application where users will connect to send messages to each other and another front-end for the web application where these users will be managed by an administrator.
 
-Los links a los otros repositorios son los siguientes:
+The links to the other repositories are as follows:
 
 - [Back-end](https://github.com/SaulArteaga/ChatXPress-Backend)
 - [Front-end Web](https://github.com/SaulArteaga/ChatXPress-FrontEnd-Web)
 
-A continuación se detallará como instalar y levantar la aplicación móvil.
+Below you will find details on how to install and launch the mobile application.
 
 ## Intalación de librerias
 
-Para este primer paso debemos tener instalado node. Si no lo tiene instalado, diríjase al [siguiente link](https://nodejs.org/en)
+For this first step you must have node installed. If you don't have it installed, go to [following link](https://nodejs.org/en).
 
-Para poder ejecutar la aplicación es necesario instalar los paquetes que encontramos en el `package.json`.
+In order to run the application, it is necessary to install the packages found in the `package.json`.
 
-Debemos ejecutar el siguiente comando:
+We must execute the following command:
 
 ```
 npm i
 ```
 
-Al terminar de instalarlo tendremos todos los paquetes necesarios para runear este proyecto.
+When you finish installing it, you will have all the packages needed to run this project.
 
-## Iniciar la aplicación
+## Start the application
 
-Para iniciar la aplicación se debe ejecutar el siguiente comando en la consola del proyecto:
+To start the application, the following command must be executed in the project console:
 
 ```
 npm start
 ```
 
-## Dispositivo necesario
+## Device required
 
-Es necesario tener el teléfono móvil conectado a la misma red que el ordenador / portátil donde se encuentra ejecutandose el proyecto. Además, se pueden usar emuladores para utilizar la aplicación.
+It is necessary to have the mobile phone connected to the same network as the computer/laptop where the project is running. In addition, emulators can be used to use the application.
 
-## Otras formas de ejecutar la aplicación
+## Other ways to run the application
 
-Si quiere ejecutarlo con un teléfono android sería con el siguiente comando:
+If you want to run it with an android phone it would be with the following command:
 
 ```
 npm run android
 ```
 
-En este caso, si es con un teléfono IPhone:
+In this case, if it is with an IPhone:
 
 ```
 npm run ios
 ```
 
-Y por último, si quiere ejecutarlo en la web:
+And finally, if you want to run it on the web:
 
 ```
 npm run web
