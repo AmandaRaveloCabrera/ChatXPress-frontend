@@ -45,6 +45,8 @@ const ChatScreen = () => {
 
   const updateCurrentChat = (msg: IMessageResponse) => {
     setMessages((oldMessages) => [...oldMessages, msg]);
+  };
+  const updateAllChats = (msg: IMessageResponse) => {
     setChats((oldState: IChatsResponse[]) => {
       const chatUpdated: IChatsResponse = {
         idChats: currentChat.idChat,
@@ -81,6 +83,7 @@ const ChatScreen = () => {
               return newData;
             });
             setMessages(data.messages);
+            updateAllChats(data.messages[data.messages.length - 1]);
           } else {
             setCurrentChat({
               idChat: "",
@@ -115,6 +118,7 @@ const ChatScreen = () => {
 
       console.log("Mensaje recibido: " + msg.content);
       updateCurrentChat(msg);
+      updateAllChats(msg);
     });
   }, []);
 
