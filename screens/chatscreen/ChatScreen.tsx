@@ -34,7 +34,7 @@ const ChatScreen = () => {
 
   const { currentUser } = React.useContext(currentUserContext);
   const { guestUser } = React.useContext(currentGuestUserContext);
-  const { setChats } = React.useContext(allChatsFromUserContext);
+  const { setChats, chats } = React.useContext(allChatsFromUserContext);
   const room = `${currentUser.id}--with--${guestUser.id}`;
   const [loading, setLoading] = React.useState(false);
   const [currentChat, setCurrentChat] = React.useState<ICurrentChatInfo>({
@@ -48,17 +48,24 @@ const ChatScreen = () => {
     setMessages((oldMessages) => [...oldMessages, msg]);
   };
   const updateAllChats = (msg: IMessageResponse) => {
-    setChats((oldState: IChatsResponse[]) => {
-      const chatUpdated: IChatsResponse = {
-        idChats: currentChat.idChat,
-        idGuestUser: guestUser.id,
-        nameGuestUser: guestUser.name,
-        time: msg.dateCreated,
-        lastMessage: msg.content,
-      };
-      const newData = oldState.filter((it) => it.idGuestUser !== guestUser.id);
-      return [...newData, chatUpdated].reverse();
-    });
+    const currentChatInChats = chats.filter(
+      (it) => it.idGuestUser === guestUser.id
+    )[0];
+    if (msg.content != currentChatInChats.lastMessage) {
+      setChats((oldState: IChatsResponse[]) => {
+        const chatUpdated: IChatsResponse = {
+          idChats: currentChat.idChat,
+          idGuestUser: guestUser.id,
+          nameGuestUser: guestUser.name,
+          time: msg.dateCreated,
+          lastMessage: msg.content,
+        };
+        const newData = oldState.filter(
+          (it) => it.idGuestUser !== guestUser.id
+        );
+        return [...newData, chatUpdated].reverse();
+      });
+    }
   };
 
   React.useEffect(() => {
@@ -84,7 +91,9 @@ const ChatScreen = () => {
               return newData;
             });
             setMessages(data.messages);
-            updateAllChats(data.messages[data.messages.length - 1]);
+            if (chats.length != 0 && data.messages.length != 0) {
+              updateAllChats(data.messages[data.messages.length - 1]);
+            }
           } else {
             setCurrentChat({
               idChat: "",
